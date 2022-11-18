@@ -20,7 +20,9 @@ status, educational and professional background, or religion.
 - making derogatory comments, personal attacks, jokes, or nicknames that are based upon stereotypes
 - spreading rumours or gossiping about other team members 
 - unwelcome sexual advances, attention, physical contact, or inappropriate social contact
+- publication of private communication without consent
 - any behaviour breaching UBC’s policies and guidelines with respect to academic honesty 
+
 
 ## Consequences 
 

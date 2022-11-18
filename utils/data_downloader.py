@@ -30,7 +30,7 @@ def split_data(ext_name, local_path='../data/raw/'):
 
     raw_df = None
     if(ext_name in ['xls', 'xlsx', 'xlsm', 'xlsb']):
-        raw_df = pd.read_excel(local_path + 'raw_data.' + ext_name, skiprows=[2])
+        raw_df = pd.read_excel(local_path + 'raw_data.' + ext_name, skiprows=[1])
         # Skipping 2nd row specifically for our credit default dataset...
 
     elif(ext_name in ['csv']):

@@ -33,7 +33,7 @@ Members who are asked to stop any inappropriate in-person or online behaviour ar
 
 Abusive, inappropriate, or otherwise, unacceptable behaviour may be reported by opening an issue or contacting one or more of the team members: 
 
-* Chester Wang
+* Chester Wang at gwx2012@student.ubc.ca
 * HanChen Wang at hcwang24@student.ubc.ca
 * Qurat-ul-Ain Azim at qazim1@student.ubc.ca
 * Renee Kwon at rkwon@student.ubc.ca

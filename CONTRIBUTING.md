@@ -16,7 +16,7 @@ Please note our project is governed by our Code of Conduct and as a contributor,
 
 Any violations can be reported to:
 
-* Chester Wang 
+* Chester Wang at gwx2012@student.ubc.ca
 * HanChen Wang at hcwang24@student.ubc.ca 
 * Qurat-ul-Ain Azim at qazim1@student.ubc.ca 
 * Renee Kwon at rkwon@student.ubc.ca

@@ -1,7 +1,8 @@
-"""Usage: data_downloader.py [LINK]...
+"""Usage: data_downloader.py [LINK] [PATH] ...
 
 Arguments:
   LINK        optional input file
+  PATH        local file path
 
 
 """
@@ -22,19 +23,18 @@ def download_data(url, to='../data/raw/', ext_name='csv'):
         file.write(file_data)
 
 
-def split_data(ext_name):
-    raw_path = '../data/raw/'
+def split_data(ext_name, local_path='../data/raw/'):
     split_path = '../data/split/'
     if(not os.path.exists(split_path)):
         os.mkdir(split_path)
 
     raw_df = None
     if(ext_name in ['xls', 'xlsx', 'xlsm', 'xlsb']):
-        raw_df = pd.read_excel(raw_path + 'raw_data.' + ext_name, skiprows=[2])
+        raw_df = pd.read_excel(local_path + 'raw_data.' + ext_name, skiprows=[2])
         # Skipping 2nd row specifically for our credit default dataset...
 
     elif(ext_name in ['csv']):
-        raw_df = pd.read_csv(raw_path + 'raw_data.' + ext_name)
+        raw_df = pd.read_csv(local_path + 'raw_data.' + ext_name)
 
     else:
         raise Exception("Data Type Unverified. Check URL")
@@ -54,7 +54,8 @@ if __name__ == '__main__':
     arguments = docopt(__doc__)
     print(arguments)
 
-    data_url = arguments['LINK'][0] # Download 1 dataset at a time
+    data_url = arguments['LINK'] # Download 1 dataset at a time
+    local_path = arguments['PATH'][0]
     ext_name = data_url.split('.')[-1]
-    download_data(data_url, ext_name=ext_name)
+    download_data(data_url, to=local_path, ext_name=ext_name)
     split_data(ext_name)

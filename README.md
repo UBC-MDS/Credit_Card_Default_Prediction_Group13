@@ -38,12 +38,13 @@ Our preliminary EDA includes looking for naay. missing values and for unclean da
 ## Dependencies
 
 The data download and analysis is dependent on the folLowing
-1. docopt
-2. Python ----- with the following packages
-    - sklearn
-    - altair
-    - pandas
-    - numpy
+1. docopt 0.6.2
+2. xlrd 2.0.1
+3. Python 3.10.6 with the following packages
+    - scikit-learn>=1.1.3
+    - altair_data_server
+    - pandas<1.5
+    - pandas profiler 3.4.0
 
 ## Usage
 

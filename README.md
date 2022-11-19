@@ -50,7 +50,7 @@ The data download and analysis is dependent on the folLowing
 
 The automated data download can be performed via running the following command using terminal:
 
-`python data_downloader.py "https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients" <PATH>`
+`python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/`
 
 Further details on the analysis will be updated as the analysis is performed. 
 

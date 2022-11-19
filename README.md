@@ -7,17 +7,6 @@
 - Qurat-ul-Ain Azim
 - Renee Kwon
 
-
-
-## About
-
-- Predictive query, classification problem, binary prediction for default
-- Models, kNN, Naive Bayes, Decision Tree etc, hyperparamter optimization?
-- EDA - what factors? figs?  tables?
-- Reporting of results
-
-
-
 ## About
 In the field of risk management, one of the most common problem is default prediction. This allows companies to predict the credibility of each person, analysis the risk level and optimizing decisions for better business economics. In this project, we aim to learn and predict a person's credibility based on his/her basic personal information (gender, education, age etc. ).
 
@@ -44,6 +33,15 @@ Most of our code for data processing and model building and will be in Python 3.
 
 ### EDA Plan
 
+
+
+## Usage
+
+The automated data download can be performed via running the following command using terminal:
+
+`python data_downloader.py "https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients" <PATH>`
+
+Further details on the analysis will be updated as the analysis is performed. 
 
 
 ## License

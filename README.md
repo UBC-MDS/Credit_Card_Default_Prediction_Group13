@@ -30,7 +30,9 @@ We plan to explore a wide range of algorithms (both naive and advanced), includi
 Most of our code for data processing and model building and will be in Python 3. For EDA and data visualization we plan to use both R and Python 3.
 
 
-### EDA Plan
+### Exploratory Data Analysis
+
+Our preliminary EDA includes looking for naay. missing values and for unclean data. We then study and plot the distributions of all the numeric type features for our analysis. Further analysis involves looking for any correlated features. We further use the pandas profiling package to report in depth results for the analysis.
 
 
 ## Dependencies

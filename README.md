@@ -53,6 +53,10 @@ The automated data download can be performed via running the following command u
 
 Further details on the analysis will be updated as the analysis is performed. 
 
+## Report
+
+Preliminary EDA results can be found [here](https://github.com/UBC-MDS/DSCI_522_Bankers_of_the_Galaxy_Group_13/blob/main/src/Bankers_data_EDA.html).
+
 
 ## License
 We use MIT license for this project.

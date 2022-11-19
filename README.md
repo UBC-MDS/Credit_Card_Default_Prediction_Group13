@@ -34,6 +34,15 @@ Most of our code for data processing and model building and will be in Python 3.
 ### EDA Plan
 
 
+## Dependencies
+
+The data download and analysis is dependent on the folLowing
+1. docopt
+2. Python ----- with the following packages
+    - sklearn
+    - altair
+    - pandas
+    - numpy
 
 ## Usage
 

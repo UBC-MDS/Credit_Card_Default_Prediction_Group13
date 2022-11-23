@@ -40,29 +40,14 @@ def clean_data(csv_path):
     df = pd.read_csv(csv_path)
     # print(df.info()) # No missing value found.
     # print(df.describe()) # No significant outlier found
-    df = df.drop(['Unnamed: 0', 'ID'], axis=1) # Drop irrelevant columns
-    df = df.rename(columns={'default payment next month': 'TARGET'})
+    # df = df.drop(['Unnamed: 0', 'ID'], axis=1) # Drop irrelevant columns
+    # df = df.rename(columns={'default payment next month': 'TARGET'})
     # print(df.head())
     return df
 
 
 # Transforming data to appropriate type and range
-def transform_data(df, name):
-
-    categorical_features = [
-        "EDUCATION",
-        "MARRIAGE",
-        "PAY_0",
-        "PAY_2",
-        "PAY_3",
-        "PAY_4",
-        "PAY_5",
-        "PAY_6",
-    ]
-
-    target = ['TARGET']
-
-    binary_features = ["SEX"]
+def transform_data(train_df, test_df):
 
     numeric_features = [
         "LIMIT_BAL",
@@ -81,23 +66,63 @@ def transform_data(df, name):
         "PAY_AMT6",
     ]
 
-    ct = make_column_transformer(
-        (StandardScaler(), numeric_features),  # scaling on numeric features
-        ("passthrough", target),  # no transformations on the target
-        (OneHotEncoder(), categorical_features),  # OHE on categorical features
-        (OneHotEncoder(drop='if_binary'), binary_features), # binary OHE
+    categorical_features = ["MARRIAGE", "SEX"]
+
+    drop = ["ID"]
+
+    passthrough_features = [
+        "PAY_0",
+        "PAY_2",
+        "PAY_3",
+        "PAY_4",
+        "PAY_5",
+        "PAY_6",
+        "EDUCATION",
+    ]
+
+    # Create the column transformer
+    preprocessor = make_column_transformer(
+        (StandardScaler(), numeric_features),
+        (
+            "passthrough",
+            passthrough_features,
+        ),
+        (
+            OneHotEncoder(drop="if_binary", handle_unknown="ignore", sparse=False),
+            categorical_features,
+        ),
+        ("drop", drop),
     )
 
-    transformed_df = ct.fit_transform(df)
-    column_names = ct.named_transformers_['standardscaler'].get_feature_names_out().tolist() +\
-                   target +\
-                   ct.named_transformers_["onehotencoder-1"].get_feature_names_out().tolist() +\
-                   ct.named_transformers_["onehotencoder-2"].get_feature_names_out().tolist()
-    transformed_df = pd.DataFrame(transformed_df.toarray(), columns=column_names)
+    # 2. Fit and transform on the training data
+    X_train = train_df.drop(columns=["default payment next month"])
+    X_test = test_df.drop(columns=["default payment next month"])
+    y_train = train_df["default payment next month"]
+    y_test = test_df["default payment next month"]
 
-    transformed_df.to_csv(out_folder + '{}_processed.csv'.format(name))
+    # This line nicely formats the feature names from `preprocessor.get_feature_names_out()`
+    # so that we can more easily use them below
+    preprocessor.verbose_feature_names_out = False
+    # Create a dataframe with the transformed features and column names
+    preprocessor.fit(X_train)
 
+    # transformed data
+    X_train_transformed = preprocessor.transform(X_train)
+    X_test_transformed = preprocessor.transform(X_test)
+    ohe_features = (
+        preprocessor.named_transformers_["onehotencoder"].get_feature_names_out().tolist()
+    )
 
+    # Code to get all the feature names
+    feature_names = numeric_features + passthrough_features + ohe_features
+
+    X_train_enc = pd.DataFrame(X_train_transformed, columns=feature_names)
+    X_test_enc = pd.DataFrame(X_test_transformed, columns=feature_names)
+
+    X_train_enc.to_csv(out_folder + 'X_train_transformed.csv')
+    X_test_enc.to_csv(out_folder + 'X_test_transformed.csv')
+    y_train.to_csv(out_folder + 'y_train.csv')
+    y_test.to_csv(out_folder + 'y_test.csv')
 
 
 # Make sure you call this script in the utils folder
@@ -112,10 +137,6 @@ if __name__ == '__main__':
 
     # Process Training data
     cleaned_df_train = clean_data(out_folder + 'train_raw.csv')
-    transform_data(cleaned_df_train, 'train')
-    print("-- Training data is ready at {}".format(out_folder))
-
-    # Process Testing data
     cleaned_df_test = clean_data(out_folder + 'test_raw.csv')
-    transform_data(cleaned_df_test, 'test')
-    print("-- Testing data is ready at {}".format(out_folder))
+    transform_data(cleaned_df_train, cleaned_df_test)
+    print("-- Transformed data available at: {}".format(out_folder))

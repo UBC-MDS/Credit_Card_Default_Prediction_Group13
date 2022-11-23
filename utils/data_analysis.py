@@ -1,9 +1,11 @@
-"""Usage: data_analysis.py [TRAINDATA] [TESTDATA] [OUTPUTFOLDER] ...
+"""Usage: data_analysis.py [TRAIN_TRANS_X] [TEST_TRANS_X] [TRAIN_Y] [TEST_Y] [OUTPUTFOLDER] ...
 
 Arguments:
-  TRAINDATA        path of the raw training data
-  TESTDATA         path of the raw testing data
-  OUTPUTFOLDER     folder that stores the generated plots
+  TRAIN_TRANS_X        path of the transformed training data
+  TEST_TRANS_X         path of the transformed testing data
+  TRAINDATA            path of the training target
+  TESTDATA             path of the testing target
+  OUTPUTFOLDER          folder that stores the generated plots
 
 
 """

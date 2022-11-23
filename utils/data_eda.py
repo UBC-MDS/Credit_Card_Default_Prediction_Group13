@@ -128,8 +128,7 @@ def perform_eda(train_data_path, out_folder):
 
 
 # Make sure you call this script in the utils folder
-# So like python3 data_downloader.py <url>
-# NOT LIKE: python3 <some_path>/data_downloader.py <url>
+# Example: python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 

@@ -83,9 +83,9 @@ def transform_data(df, name):
 
     ct = make_column_transformer(
         (StandardScaler(), numeric_features),  # scaling on numeric features
-        ("passthrough", target),  # no transformations on the binary features
+        ("passthrough", target),  # no transformations on the target
         (OneHotEncoder(), categorical_features),  # OHE on categorical features
-        (OneHotEncoder(drop='if_binary'), binary_features),
+        (OneHotEncoder(drop='if_binary'), binary_features), # binary OHE
     )
 
     transformed_df = ct.fit_transform(df)

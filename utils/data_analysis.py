@@ -5,7 +5,7 @@ Arguments:
   TEST_TRANS_X         path of the transformed testing data
   TRAINDATA            path of the training target
   TESTDATA             path of the testing target
-  OUTPUTFOLDER          folder that stores the generated plots
+  OUTPUTFOLDER         folder that stores the generated plots
 
 
 """
@@ -151,8 +151,10 @@ def perform_ml_analysis(train_data_path, test_data_path, out_folder):
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
-    train_data_path = arguments['TRAINDATA'] # Download 1 dataset at a time
-    test_data_path = arguments['TESTDATA'] # Download 1 dataset at a time
+    X_train_data_path = arguments['TRAIN_TRANS_X'] # Download 1 dataset at a time
+    X_test_data_path = arguments['TEST_TRANS_X'] # Download 1 dataset at a time
+    Y_train_data_path = arguments['TRAIN_Y'] # Download 1 dataset at a time
+    Y_test_data_path = arguments['TEST_Y'] # Download 1 dataset at a time
     out_path = arguments['OUTPUTFOLDER'][0]
     ext_name = train_data_path.split('.')[-1]
-    perform_ml_analysis(train_data_path, test_data_path, out_path)
+    perform_ml_analysis(X_train_data_path, X_test_data_path, Y_train_data_path, Y_test_data_path)

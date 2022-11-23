@@ -3,3 +3,6 @@ data/raw/*
 data/split/*
 *.csv
 *.xls
+utils/*.json
+utils/*.log
+utils/*node*

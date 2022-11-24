@@ -285,6 +285,7 @@ def perform_ml_analysis(X_train_enc, X_test_enc, Y_train_data_path, Y_test_data_
         label="threshold 0.5",
     )
     plt.legend(loc="best");
+    plt.savefig('../results/precision_recall.png')
     
     # Evaluate the Receiver Operating Characteristic (ROC) curve of the optimized model. 
     from sklearn.metrics import roc_curve
@@ -304,6 +305,7 @@ def perform_ml_analysis(X_train_enc, X_test_enc, Y_train_data_path, Y_test_data_
         label="threshold 0.5",
     )
     plt.legend(loc="best");
+    plt.savefig('../results/roc.png')
     
     # Finally, check the f1_score of the test data with our optimized model. 
     test_f1_score = f1_score(y_test, random_search.best_estimator_.predict(X_test))

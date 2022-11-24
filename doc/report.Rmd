@@ -1,0 +1,73 @@
+---
+title: "Credibility Classification of Credit Card Clients"
+output: 
+  html_document:
+    toc: TRUE
+#bibliography: references.bib
+---
+
+Group information:
+
+Team number: 13
+
+Team members:
+
+-   Chester Wang
+
+-   HanChen Wang
+
+-   Qurat-ul-Ain Azim
+
+-   Renee Kwon
+
+## Summary
+
+In the field of risk management, one of the most common problems is default prediction. This allows companies to predict the credibility of each person, analyze the risk level and optimize decisions for better business economics. In this project, we aim to learn and predict a credit card holder's credibility based on his/her basic personal information (gender, education, age, history of past payment etc. ).
+
+Our final classifier using the Random Forest Algorithm did not perform as well as we hoped on our unseen test data, with a final f1 score of 0.495. Of the 6,000 clients in our test data, our model correctly predicted the default status of 4,871 clients correctly. There were 1,129 incorrect predictions, either predicting a customer will default on their payment when they have not or a customer will not default when they have. Incorrect predictions of either type can be costly for financial institutions and thus we will continue to study our data and improve our model before it is put into production.
+
+## Introduction
+
+Through this project, we aim to answer the question: Which attributes are most important when we use machine learning models to predict the default? Specifically we would like to know if the weight of attributes would change when we employ different models. Answering this question is, from our perspective, of great importance because it allows to understand what attributes relate to credibility the most. We would also aim to a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
+
+## Methods
+
+#### Dataset
+
+We use a dataset hosted by the UCI machine learning repository. Originally it is collected by researchers from Chung Hua University and Tamkang University. As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
+
+[Link to Source Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
+
+#### Analysis
+
+There are 30,000 observations of credit card clients in our dataset with no missing values in any rows or columns.
+
+We have 24 useful features in total, with one binary feature, eight categorical features, and 14 numerical features. Our target column is `default payment next month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill in the next month.
+
+There is class imbalance in our data, with 77.9% of examples as class 1 and 22.1% as class 0.
+
+We are interested in finding clients who are likely to default on their next payment but falsely predicting a client will default can be costly in terms of customer loyalty. Therefore, we chose to build our model using the f1 score as our metric.
+
+The following models were tested and compared:
+
+-   Decision Tree Classifier
+
+-   K Neighbours Classifier
+
+-   RBF SVM
+
+-   Logistic Regression Model
+
+-   Ridge Classifier Model
+
+-   Random Forest Classifier
+
+From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47. We then performed hyperparameter optimization for the Random Forest Model to find our optimum hyperparamaters as `classweight = balanced` and `max_depth = 18`. Using our Random Forest Classifier with optimized hyperparameters, the f1 score returned was 0.495.
+
+## Results
+
+We used our optimized Random Forest Classifier model on the test data of 6,000 clients.
+
+The f1 score on the test data was 0.495.
+
+Our model made 4,871 correct predictions for our clients, out of 6,000 (about 81%). However, we predicted 767 clients would not default and make their payment when in fact, they would not. These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients. On the other hand, we made 362 false predictions on clients and predicted they would default, when they will not. This is costly because a false labeling and a possible unjustified interest rate increase can lead to client dissatisfaction.

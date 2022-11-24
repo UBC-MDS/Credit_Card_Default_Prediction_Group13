@@ -389,7 +389,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
 
 
 # Make sure you call this script in the utils folder
-# Example: python3 data_analysis.py ../data/processed/train_raw.csv ../data/processed/test_raw.csv ../data/results/
+# Example: python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 

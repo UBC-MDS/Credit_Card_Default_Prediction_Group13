@@ -122,8 +122,8 @@ def perform_eda(train_data_path, out_folder):
     sns.heatmap(matrix, annot=True)
     plt.savefig(out_path + 'correlation_matrix.png')
 
-    profile = ProfileReport(train_df, title="Pandas Profiling Report")  # , minimal=True)
-    profile.to_file(out_path + "summary.html")
+    # profile = ProfileReport(train_df, title="Pandas Profiling Report")  # , minimal=True)
+    # profile.to_file(out_path + "summary.html")
 
 
 

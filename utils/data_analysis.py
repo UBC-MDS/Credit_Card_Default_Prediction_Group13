@@ -32,7 +32,7 @@ from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import classification_report
-from scipy.stats import randint
+from scipy.stats import loguniform
 
 
 def perform_ml_analysis(train_data, test_data, out_path):
@@ -209,8 +209,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
                 for key, value in cross_val_results.items()
             },
             axis=0,
-        )
-        .T
+        ).T
         # .style.format(
         #     precision=2  # Pandas `.style` does not honor previous rounding via `.round()`
         # )
@@ -230,19 +229,19 @@ def perform_ml_analysis(train_data, test_data, out_path):
     """
     )
     print(cross_val_results_df)
+    cross_val_results_df.to_csv(out_path + "/model_selection.csv")
 
     # We select RandomForestClassifier for model hyperparameter optimization.
 
-    rf_cla = make_pipeline(preprocessor, RandomForestClassifier())
-    # rf_cla.fit(X_train, y_train)
+    lr = make_pipeline(preprocessor, LogisticRegression(max_iter=1000))
 
     param_dist = {
-        "randomforestclassifier__max_depth": randint(1, 500),
-        "randomforestclassifier__class_weight": ["balanced", None],
+        "logisticregression__C": loguniform(1e-3, 1e3),
+        "logisticregression__class_weight": ["balanced", None],
     }
 
     random_search = RandomizedSearchCV(
-        rf_cla,
+        lr,
         param_dist,
         n_iter=20,
         verbose=1,
@@ -285,18 +284,11 @@ def perform_ml_analysis(train_data, test_data, out_path):
 
     # Generate a table showing feature importances.
     feat_importance = random_search.best_estimator_.named_steps[
-        "randomforestclassifier"
-    ].feature_importances_
+        "logisticregression"
+    ].coef_[0]
 
-    ohe_names = (
-        random_search.best_estimator_.named_steps["columntransformer"]
-        .named_transformers_["onehotencoder"]
-        .get_feature_names_out()
-        .tolist()
-    )
+    feature_names = numeric_features + passthrough_features + ohe_features
 
-    feat_names = numeric_features + ohe_names + passthrough_features
-    
     # This is the feature importances of the optimized model.
     print(
         """
@@ -306,9 +298,10 @@ def perform_ml_analysis(train_data, test_data, out_path):
     """
     )
     feature_table = pd.DataFrame(
-        {"Feature": feat_names, "Importance": feat_importance}
-    ).sort_values(by="Importance", ascending=False)
+        {"Feature": feature_names, "Coefficient": feat_importance}
+    ).sort_values(by="Coefficient", ascending=False)
     print(feature_table)
+    feature_table.to_csv(out_path + "/feature_coefficient.csv")
 
     # Add confusion matrix, predict score on test data.
     print(
@@ -360,9 +353,9 @@ def perform_ml_analysis(train_data, test_data, out_path):
         markersize=10,
         label="threshold 0.5",
     )
-    plt.legend(loc="best")        
+    plt.legend(loc="best")
     plt.savefig(out_path + "/precision_recall.png")
-    print("Precision_recall curve plot saved as "+out_path+"/precision_recall.png")
+    print("Precision_recall curve plot saved as " + out_path + "/precision_recall.png")
 
     # Evaluate the Receiver Operating Characteristic (ROC) curve of the optimized model.
 
@@ -384,7 +377,11 @@ def perform_ml_analysis(train_data, test_data, out_path):
     )
     plt.legend(loc="best")
     plt.savefig(out_path + "/roc.png")
-    print("Receiver Operating Characteristic (ROC) curve plot saved as "+ out_path + "/roc.png")
+    print(
+        "Receiver Operating Characteristic (ROC) curve plot saved as "
+        + out_path
+        + "/roc.png"
+    )
 
     # Finally, check the f1_score of the test data with our optimized model.
     test_f1_score = f1_score(y_test, random_search.best_estimator_.predict(X_test))

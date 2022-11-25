@@ -1,6 +1,5 @@
-data/*
-data/raw/*
-data/split/*
+data/raw*
+data/processed*
 *.csv
 *.xls
 utils/*.json

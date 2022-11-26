@@ -112,7 +112,7 @@ knitr::include_graphics("../data/eda_results/binary_result.png")
 
 Numeric features include bill amounts, payment amounts, and age of the client.
 We get an idea that the default ratio is not dependent on the months, however, we will verify this using our prediction model.
-We also see there is a slight increase in the default ratio in the middle to late age range of our clients.
+We also see that there is a slight increase in the default ratio in the middle to late age range of our clients.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 3.** Distribution of Numeric Feature"}
 knitr::include_graphics("../data/eda_results/numeric_result.png")
@@ -168,7 +168,7 @@ This is also comparable to the bill amounts of the neighbouring months.
 
 The strongest negative coefficient was `BILL_AMT1` which is expected as the lower the amount due in the previous month, the higher the likely a client will default.
 Also, `PAY_AMT2` was a strong predicting variable for the default classification.
-This is also expected as higher payments in recent month will result in less likelihood of a client defaulting.
+This also makes sense as higher payments in recent month will result in less likelihood of a client defaulting.
 
 Below is the table of the coefficients of all the features.
 

@@ -25,7 +25,7 @@ alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
 
 
 def perform_eda(train_data_path, out_folder):
-    if(not os.path.exists(out_folder)):
+    if not (os.path.exists(out_folder)):
         os.mkdir(out_folder)
 
     headernames = [
@@ -89,7 +89,6 @@ def perform_eda(train_data_path, out_folder):
         "PAY_AMT6",
     ]
 
-
     # Plotting categorical features
     categorical_chart = alt.Chart(train_df).mark_bar(opacity=0.7).encode(
         x=alt.X(alt.repeat()),
@@ -134,5 +133,4 @@ if __name__ == '__main__':
 
     train_data_path = arguments['TRAINDATA'] # Download 1 dataset at a time
     out_path = arguments['OUTPUTFOLDER'][0]
-    ext_name = train_data_path.split('.')[-1]
     perform_eda(train_data_path, out_path)

@@ -34,7 +34,7 @@ Incorrect predictions of either type can be costly for financial institutions an
 Through this project, we aim to answer the question: Which attributes are most important when we use machine learning models to predict the default?
 Specifically we would like to know if the weight of attributes would change when we employ different models.
 Answering this question is, from our perspective, of great importance because it allows to understand what attributes relate to credibility the most.
-We would also aim to a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
+We would also aim to perform a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
 
 # Methods
 
@@ -43,7 +43,7 @@ We would also aim to a comparative study of the mainstream machine learning clas
 We use a dataset hosted by the UCI machine learning repository.
 Originally it is collected by researchers from Chung Hua University and Tamkang University.
 As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset.
-The dataset consists of 30000 instances, with each consists of 23 attributes and a target.
+The dataset consists of 30000 instances, where each observation consists of 23 attributes and a target.
 The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use.
 The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
 
@@ -88,7 +88,7 @@ PAY_AMT1 = amount paid in September, 2005; PAY_AMT2 = amount paid in August, 200
 
 There are 30,000 observations of credit card clients in our dataset with no missing values in any rows or columns.
 
-Upon our first look at the data, we found some features contained ambiguous categories.
+Upon our first look at the data, we found some features containing ambiguous categories.
 We cleaned up the data so the categories were more meaningful.
 
 We have 24 usable features in total, with one binary feature, eight categorical features, and 14 numerical features.

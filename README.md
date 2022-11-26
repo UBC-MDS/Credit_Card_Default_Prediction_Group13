@@ -52,7 +52,17 @@ The automated data download can be performed via running the following command u
 
 `python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/`
 
-Further details on the analysis will be updated as the analysis is performed. 
+Some preprocessing, data cleaning and splitting canbe performed via the folowwing command:
+
+`python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/`
+
+The EDA can be performed as:
+
+`python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/`
+
+And finally, the model building and predictive analysis can be done by running the following code in the terminal:
+
+`python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results`
 
 ## Report
 

@@ -10,7 +10,6 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
@@ -137,17 +136,10 @@ Therefore, we chose to build our model using the f1 score as our metric.
 The following models were tested and compared:
 
 -   Decision Tree Classifier
-
 -   K Neighbours Classifier
-
-<!-- -->
-
 -   RBF SVM
-
 -   Logistic Regression Model
-
 -   Ridge Classifier Model
-
 -   Random Forest Classifier
 
 From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47.
@@ -181,6 +173,11 @@ kable(feat_table) %>%
 ```
 
 Our model made 4,141 correct predictions for our clients, out of 6,000 (69%).
+
+
+```{r out.width="50%", fig.align='center', fig.cap="**Figure 4.** Confusion Matrix"}
+knitr::include_graphics("../data/results/confusion_matrix.png")
+```
 
 We predicted 494 clients would not default and make their payment when in fact, they would not.
 These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients.

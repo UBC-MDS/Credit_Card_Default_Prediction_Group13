@@ -45,6 +45,7 @@ The data download and analysis is dependent on the folLowing
     - altair_data_server
     - pandas<1.5
     - pandas profiler 3.4.0
+4. RStudio 2022.07.1+554 
 
 ## Usage
 

@@ -92,6 +92,11 @@ Numeric features include bill amounts, payment amounts, and age of the client. W
 knitr::include_graphics("../data/eda_results/numeric_result.png")
 ```
 
+Below is the correlation matrix for all of our features. We see a strong correlation between our target and payment history as well as the credit limit offered to the client.
+```{r out.height="800px", out.width="1000px", fig.cap="Figure 3: Distribution of Numeric Feature"}
+knitr::include_graphics("../data/eda_results/correlation_matrix.png")
+```
+
 ### Predictive Model
 
 We are interested in finding clients who are likely to default on their next payment but falsely predicting a client will default can be costly in terms of customer loyalty. Therefore, we chose to build our model using the f1 score as our metric.
@@ -112,12 +117,22 @@ The following models were tested and compared:
 
 From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47. However, we chose to use the Logistic Regression Classifier so that we are able to get a sense of whether a feature has a positive or negative impact on our prediction. 
 
-We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamaters as `classweight = balanced` and `max_depth = 18`. Using our Random Forest Classifier with optimized hyperparameters, the f1 score returned was 0.495.
+We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamater `C` value as `0.438` and `class_weight = balanced`. Using our model with optimized hyperparameters, the f1 validation score returned was 0.479.
+
 
 ## Results
 
-We used our optimized Random Forest Classifier model on the test data of 6,000 clients.
+We used our optimized Logistic Regression model on the test data of 6,000 clients. The f1 score on the test data was 0.467.
 
-The f1 score on the test data was 0.495.
+From the coefficient table below, we see the most important positively associated features is `PAY_0`: the default history of the client. This is expected because the longer a client has delayed their payments, the more likely they are to default in that month. `BILL_AMT3` was the second strongest positively associated feature returned from our model - which corresponds to the bill amount due in the month of July. This is also comparable to the bill amounts of the neighbouring months. 
+
+The 
+
+
+**** COEFFICIENT TABLE ****
+
+
+
+
 
 Our model made 4,871 correct predictions for our clients, out of 6,000 (about 81%). However, we predicted 767 clients would not default and make their payment when in fact, they would not. These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients. On the other hand, we made 362 false predictions on clients and predicted they would default, when they will not. This is costly because a false labeling and a possible unjustified interest rate increase can lead to client dissatisfaction.

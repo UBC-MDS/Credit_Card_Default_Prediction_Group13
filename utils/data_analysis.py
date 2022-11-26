@@ -343,6 +343,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     precision, recall, thresholds = precision_recall_curve(
         y_test, random_search.best_estimator_.predict_proba(X_test)[:, 1]
     )
+    plt.clf()
     plt.plot(precision, recall, label="logistic regression: PR curve")
     plt.xlabel("Precision")
     plt.ylabel("Recall")
@@ -355,6 +356,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     )
     plt.legend(loc="best")
     plt.savefig(out_path + "/precision_recall.png")
+    plt.clf()
     print("Precision_recall curve plot saved as " + out_path + "/precision_recall.png")
 
     # Evaluate the Receiver Operating Characteristic (ROC) curve of the optimized model.
@@ -362,6 +364,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     fpr, tpr, thresholds = roc_curve(
         y_test, random_search.best_estimator_.predict_proba(X_test)[:, 1]
     )
+    plt.clf()
     plt.plot(fpr, tpr, label="ROC Curve")
     plt.xlabel("FPR")
     plt.ylabel("TPR (recall)")
@@ -377,6 +380,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     )
     plt.legend(loc="best")
     plt.savefig(out_path + "/roc.png")
+    plt.clf()
     print(
         "Receiver Operating Characteristic (ROC) curve plot saved as "
         + out_path
@@ -396,5 +400,4 @@ if __name__ == "__main__":
     train_data = arguments["TRAINDATA"]  # load 1 dataset at a time
     test_data = arguments["TESTDATA"]  # load 1 dataset at a time
     out_path = arguments["OUTPUTFOLDER"][0]
-    ext_name = train_data.split(".")[-1]
     perform_ml_analysis(train_data, test_data, out_path)

@@ -22,8 +22,8 @@ from sklearn.pipeline import Pipeline, make_pipeline
 
 
 # Split the data into train.csv and test.csv
-def preprocess_data(ext_name, raw_data_path, out_folder):
-    if(not os.path.exists(out_folder)):
+def preprocess_data(raw_data_path, out_folder):
+    if not (os.path.exists(out_folder)):
         os.mkdir(out_folder)
 
     # Skipping 2nd row specifically for our credit default dataset...
@@ -33,7 +33,7 @@ def preprocess_data(ext_name, raw_data_path, out_folder):
     test_df.to_csv(out_folder + 'test_raw.csv')
 
     # Data cleaning
-    raw_df["EDUCATION"] = raw_df.loc[:,"EDUCATION"].replace([0,4,5,6],3).replace([1,2,3],[3,2,1])
+    raw_df["EDUCATION"] = raw_df.loc[:,"EDUCATION"].replace([0,4,5,6],3).replace([1,2,3,4],[3,2,1,4])
     raw_df["MARRIAGE"] = raw_df.loc[:,"MARRIAGE"].replace([0],3)
 
     # Make sure not to change the random seed
@@ -51,7 +51,6 @@ if __name__ == '__main__':
 
     input_path = arguments['INPUTPATH'] # Points to the raw dataset
     out_folder = arguments['OUTPUTFOLDER'][0]
-    ext_name = input_path.split('.')[-1]
 
-    preprocess_data(ext_name, input_path, out_folder)
+    preprocess_data(input_path, out_folder)
     print("-- Cleaned data available at: {}".format(out_folder))

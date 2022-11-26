@@ -10,7 +10,6 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)

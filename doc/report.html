@@ -543,17 +543,26 @@ month. <code>BILL_AMT3</code> was the second strongest positively
 associated feature returned from our model - which corresponds to the
 bill amount due in the month of July. This is also comparable to the
 bill amounts of the neighbouring months.</p>
-<p>The</p>
+<p>The strongest negative coefficient was <code>BILL_AMT1</code> which
+is expected as the lower the amount due in the previous month, the
+higher the likely a client will default. Also, <code>PAY_AMT2</code> was
+a strong predicting variable for the default classification. This is
+also expected as higher payments in recent month will result in less
+likelihood of a client defaulting.</p>
+<p>Below is the table of the coefficients of all the features.</p>
 <p>**** COEFFICIENT TABLE ****</p>
 <p>Our model made 4,871 correct predictions for our clients, out of
-6,000 (about 81%). However, we predicted 767 clients would not default
-and make their payment when in fact, they would not. These false
-predictions would be costly for the institution in terms of opportunity
-cost as they could be charging a higher interest rate on these clients.
-On the other hand, we made 362 false predictions on clients and
-predicted they would default, when they will not. This is costly because
-a false labeling and a possible unjustified interest rate increase can
-lead to client dissatisfaction.</p>
+6,000 (about 81%).</p>
+<p>** CONFUSION MATRIX**</p>
+<p>We predicted 767 clients would not default and make their payment
+when in fact, they would not. These false predictions would be costly
+for the institution in terms of opportunity cost as they could be
+charging a higher interest rate on these clients. On the other hand, we
+made 362 false predictions on clients and predicted they would default,
+when they will not. This is costly because a false labeling and a
+possible unjustified interest rate increase can lead to client
+dissatisfaction.</p>
+<p>##REFERENCES</p>
 </div>
 
 

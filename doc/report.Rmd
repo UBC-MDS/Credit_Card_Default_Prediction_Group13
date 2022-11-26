@@ -126,13 +126,18 @@ We used our optimized Logistic Regression model on the test data of 6,000 client
 
 From the coefficient table below, we see the most important positively associated features is `PAY_0`: the default history of the client. This is expected because the longer a client has delayed their payments, the more likely they are to default in that month. `BILL_AMT3` was the second strongest positively associated feature returned from our model - which corresponds to the bill amount due in the month of July. This is also comparable to the bill amounts of the neighbouring months. 
 
-The 
+The strongest negative coefficient was `BILL_AMT1` which is expected as the lower the amount due in the previous month, the higher the likely a client will default. Also, `PAY_AMT2` was a strong predicting variable for the default classification. This is also expected as higher payments in recent month will result in less likelihood of a client defaulting. 
 
+Below is the table of the coefficients of all the features.
 
 **** COEFFICIENT TABLE ****
 
+Our model made 4,871 correct predictions for our clients, out of 6,000 (about 81%). 
+
+** CONFUSION MATRIX**
+
+We predicted 767 clients would not default and make their payment when in fact, they would not. These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients. On the other hand, we made 362 false predictions on clients and predicted they would default, when they will not. This is costly because a false labeling and a possible unjustified interest rate increase can lead to client dissatisfaction.
 
 
 
-
-Our model made 4,871 correct predictions for our clients, out of 6,000 (about 81%). However, we predicted 767 clients would not default and make their payment when in fact, they would not. These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients. On the other hand, we made 362 false predictions on clients and predicted they would default, when they will not. This is costly because a false labeling and a possible unjustified interest rate increase can lead to client dissatisfaction.
+##REFERENCES

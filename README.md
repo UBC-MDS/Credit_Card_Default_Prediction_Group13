@@ -66,7 +66,7 @@ And finally, the model building and predictive analysis can be done by running t
 
 ## Report
 
-Preliminary EDA results can be found [here](https://github.com/UBC-MDS/DSCI_522_Bankers_of_the_Galaxy_Group_13/blob/main/src/Bankers_data_EDA.html).
+A report summarizing the results of our study can be found [here](https://github.com/UBC-MDS/DSCI_522_Bankers_of_the_Galaxy_Group_13/blob/main/doc/report.html).
 
 
 ## License

@@ -52,14 +52,14 @@ The data attributes range from client's gender, age, education, previous payment
 #### Categorical Features
 
 `Education`: Ordinal feature.
-1 = high school; 2 = university; 3 = graduate school; 4 = others.\
+1 = graduate school; 2 = university; 3 = high school; 4 = others.\
 
 `Marital status`: 1 = married; 2 = single; 3 = others.\
 
 `PAY_X`: Ordinal feature.
 The history of monthly payment tracked from April to September, 2005, as follows: PAY_1 = the repayment status in September, 2005; PAY_2 = the repayment status in August, 2005; .
 . .;PAY_6 = the repayment status in April, 2005.
-The measurement scale for the repayment status is: -1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months; .
+The measurement scale for the repayment status is: -2 = no payment required; -1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months; .
 . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.
 
 #### Binary Features
@@ -173,7 +173,10 @@ This is also expected as higher payments in recent month will result in less lik
 Below is the table of the coefficients of all the features.
 
 ```{r}
-kable(read.csv("../data/results/feature_coefficient.csv")) %>%
+feat_table = read.csv("../data/results/feature_coefficient.csv") %>%
+  select(c(Feature,Coefficient))
+
+kable(feat_table) %>%
   kable_classic_2(full_width = F)
 ```
 

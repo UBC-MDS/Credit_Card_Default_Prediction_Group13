@@ -116,10 +116,8 @@ def perform_eda(train_data_path, out_folder):
 
     save(numeric_chart, out_path + 'numeric_result.png')
 
-    matrix = train_df.corr('spearman')
-    sns.set(rc={'figure.figsize':(25,9)})
-    sns.heatmap(matrix, annot=True)
-    plt.savefig(out_path + 'correlation_matrix.png')
+    train_df.corr('spearman').style.background_gradient()
+    train_df.to_csv(out_path + 'correlation_matrix.png')
 
     # profile = ProfileReport(train_df, title="Pandas Profiling Report")  # , minimal=True)
     # profile.to_file(out_path + "summary.html")

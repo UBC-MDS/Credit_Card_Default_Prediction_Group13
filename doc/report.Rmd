@@ -6,6 +6,12 @@ output:
 #bibliography: references.bib
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(knitr)
+```
+
 Group information:
 
 Team number: 13
@@ -36,15 +42,57 @@ Through this project, we aim to answer the question: Which attributes are most i
 
 We use a dataset hosted by the UCI machine learning repository. Originally it is collected by researchers from Chung Hua University and Tamkang University. As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
 
+#### Feature Descriptions
+
+##Categorical features
+`Education`: Ordinal feature. 1 = high school; 2 = university; 3 = graduate school; 4 = others.
+Marital status: 1 = married; 2 = single; 3 = others.
+PAY_X: Ordinal feature. The history of monthly payment tracked from April to September, 2005, as follows: PAY_1 = the repayment status in September, 2005; PAY_2 = the repayment status in August, 2005; . . .;PAY_6 = the repayment status in April, 2005.
+The measurement scale for the repayment status is: -1 = pay duly; 1 = payment delay for one month; 2 = payment delay for two months; . . .; 8 = payment delay for eight months; 9 = payment delay for nine months and above.
+
+##Binary features
+Sex is reported as a binary feature (1 = male; 2 = female).
+
+##Drop
+`ID` duplicate column from the index. default payment next month is the target column.
+
+##Numeric features
+LIMIT_BAL: The amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit.
+Age: The age of the individual (years).
+BILL_AMTX: Amount of bill statement (NT dollar). BILL_AMT1 = amount of bill statement in September, 2005; BILL_AMT2 = amount of bill statement in August, 2005; . . .; BILL_AMT6 = amount of bill statement in April, 2005.
+PAY_AMTX: Amount of previous payment (NT dollar). PAY_AMT1 = amount paid in September, 2005; PAY_AMT2 = amount paid in August, 2005; . . .;PAY_AMT6 = amount paid in April, 2005.
+
 [Link to Source Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
-#### Analysis
+### Analysis
+
+#### EDA 
 
 There are 30,000 observations of credit card clients in our dataset with no missing values in any rows or columns.
 
-We have 24 useful features in total, with one binary feature, eight categorical features, and 14 numerical features. Our target column is `default payment next month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill in the next month.
+Upon our first look at the data, we found some features contained ambiguous categories. We cleaned up the data so the categories were more meaningful. 
 
-There is class imbalance in our data, with 77.9% of examples as class 1 and 22.1% as class 0.
+We have 24 usable features in total, with one binary feature, eight categorical features, and 14 numerical features. Our target column is `default payment next month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill in the next month.
+
+There is class imbalance in our data, with 77.9% of examples as class 1 and 22.1% as class 0. 
+
+We have categorical features such as marriage, education, and monthly payment history. Below is the distribution of our target class according to the various categories. 
+
+```{r out.height="600px", out.width="1000px", fig.cap="Figure 1: Distribution of Categorical Features"}
+knitr::include_graphics("../data/eda_results/categorical_result.png")
+```
+
+There is one binary feature in our dataset: sex. There is a higher proportion of female clients who have defaulted in our dataset. 
+```{r out.height="100px", out.width="800px", fig.cap="Figure 2: Distribution of Binary Feature"}
+knitr::include_graphics("../data/eda_results/binary_result.png")
+```
+
+Numeric features include bill amounts, payment amounts, and age of the client. We get an idea that the default ratio is not dependent on the months, however, we will verify this using our prediction model. We also see there is a slight increase in the default ratio in the middle to late age range of our clients. 
+```{r out.height="800px", out.width="1000px", fig.cap="Figure 3: Distribution of Numeric Feature"}
+knitr::include_graphics("../data/eda_results/numeric_result.png")
+```
+
+### Predictive Model
 
 We are interested in finding clients who are likely to default on their next payment but falsely predicting a client will default can be costly in terms of customer loyalty. Therefore, we chose to build our model using the f1 score as our metric.
 
@@ -62,7 +110,9 @@ The following models were tested and compared:
 
 -   Random Forest Classifier
 
-From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47. We then performed hyperparameter optimization for the Random Forest Model to find our optimum hyperparamaters as `classweight = balanced` and `max_depth = 18`. Using our Random Forest Classifier with optimized hyperparameters, the f1 score returned was 0.495.
+From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47. However, we chose to use the Logistic Regression Classifier so that we are able to get a sense of whether a feature has a positive or negative impact on our prediction. 
+
+We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamaters as `classweight = balanced` and `max_depth = 18`. Using our Random Forest Classifier with optimized hyperparameters, the f1 score returned was 0.495.
 
 ## Results
 

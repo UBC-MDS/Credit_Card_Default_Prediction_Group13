@@ -318,11 +318,12 @@ def perform_ml_analysis(train_data, test_data, out_path):
         values_format="d",
         display_labels=["Non default", "default"],
     )
+    print("Precision_recall curve plot saved as " + out_path + "/confusion_matrix.png")
     predictions = random_search.best_estimator_.predict(X_test)
     TN, FP, FN, TP = confusion_matrix(y_test, predictions).ravel()
     print("Confusion matrix for default payment data set")
     print(cm.confusion_matrix)
-
+    
     # Generate the classification report
 
     y_pred = random_search.best_estimator_.predict(X_test)

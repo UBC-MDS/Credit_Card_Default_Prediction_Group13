@@ -13,15 +13,41 @@ import altair as alt
 import os
 from pandas_profiling import ProfileReport
 from altair_data_server import data_server
-from altair_saver import save
 import seaborn as sns
 import matplotlib.pyplot as plt
+import vl_convert as vlc
 
 # Save a vega-lite spec and a PNG blob for each plot in the notebook
 alt.renderers.enable('mimetype')
 alt.data_transformers.enable('data_server')
-alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
 # Handle large data sets without embedding them in the notebook
+
+
+# Reference: 531 Slack Channel by Joel
+def save_chart(chart, filename, scale_factor=1):
+    '''
+    Save an Altair chart using vl-convert
+
+    Parameters
+    ----------
+    chart : altair.Chart
+        Altair chart to save
+    filename : str
+        The path to save the chart to
+    scale_factor: int or float
+        The factor to scale the image resolution by.
+        E.g. A value of `2` means two times the default resolution.
+    '''
+    with alt.data_transformers.enable("default") and alt.data_transformers.disable_max_rows():
+        if filename.split('.')[-1] == 'svg':
+            with open(filename, "w") as f:
+                f.write(vlc.vegalite_to_svg(chart.to_dict()))
+        elif filename.split('.')[-1] == 'png':
+            with open(filename, "wb") as f:
+                f.write(vlc.vegalite_to_png(chart.to_dict(), scale=scale_factor))
+        else:
+            raise ValueError("Only svg and png formats are supported")
+
 
 
 def perform_eda(train_data_path, out_folder):
@@ -96,7 +122,7 @@ def perform_eda(train_data_path, out_folder):
         color=alt.Color("default payment next month:N"),
     ).properties(width=200, height=100).repeat(categorical_features, columns=3)
 
-    save(categorical_chart, out_path + 'categorical_result.png')
+    save_chart(categorical_chart, out_path + 'categorical_result.png')
 
     # Plotting the binary feature.
     binary_chart = alt.Chart(train_df).mark_bar(opacity=0.7).encode(
@@ -105,7 +131,7 @@ def perform_eda(train_data_path, out_folder):
         color=alt.Color("default payment next month:N"),
     )
 
-    save(binary_chart, out_path + 'binary_result.png')
+    save_chart(binary_chart, out_path + 'binary_result.png')
 
     # Plotting numeric features.
     numeric_chart = alt.Chart(train_df).mark_bar(opacity=0.7).encode(
@@ -114,13 +140,10 @@ def perform_eda(train_data_path, out_folder):
         color=alt.Color("default payment next month:N")
     ).properties(width=300, height=300).repeat(numeric_features, columns=3)
 
-    save(numeric_chart, out_path + 'numeric_result.png')
+    save_chart(numeric_chart, out_path + 'numeric_result.png')
 
     train_df.corr('spearman').style.background_gradient()
     train_df.to_csv(out_path + 'corr.csv')
-
-    # profile = ProfileReport(train_df, title="Pandas Profiling Report")  # , minimal=True)
-    # profile.to_file(out_path + "summary.html")
 
 
 

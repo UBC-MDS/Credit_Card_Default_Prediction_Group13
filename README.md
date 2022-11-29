@@ -37,7 +37,7 @@ Our preliminary EDA includes looking for naay. missing values and for unclean da
 
 ## Dependencies
 
-The data download and analysis is dependent on the folLowing
+The data download and analysis is dependent on the following
 1. docopt 0.6.2
 2. xlrd 2.0.1
 3. Python 3.10.6 with the following packages
@@ -53,7 +53,7 @@ The automated data download can be performed via running the following command u
 
 `python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/`
 
-Some preprocessing, data cleaning and splitting canbe performed via the folowwing command:
+Some preprocessing, data cleaning and splitting can be performed via the following command:
 
 `python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/`
 

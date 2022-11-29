@@ -6,7 +6,7 @@
 # data/raw/raw_data.xls : utils/data_downloader.py
 # 	python3 utils/data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls data/raw/
  
-# Some preprocessing, data cleaning and splitting canbe performed via the following command:
+# Some preprocessing, data cleaning and splitting can be performed via the following command:
 data/processed/test_cleaned.csv data/processed/test_raw.csv data/processed/train_cleaned.csv data/processed/train_raw.csv : data/raw/raw_data.xls utils/data_preprocessor.py
 	python3 utils/data_preprocessor.py data/raw/raw_data.xls data/processed/
 

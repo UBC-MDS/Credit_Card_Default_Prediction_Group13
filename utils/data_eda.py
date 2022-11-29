@@ -16,6 +16,7 @@ from altair_data_server import data_server
 from altair_saver import save
 import seaborn as sns
 import matplotlib.pyplot as plt
+import vl_convert as vlc
 
 # Save a vega-lite spec and a PNG blob for each plot in the notebook
 alt.renderers.enable('mimetype')
@@ -23,6 +24,34 @@ alt.data_transformers.enable('data_server')
 alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
 # Handle large data sets without embedding them in the notebook
 
+
+
+# Reference: 531 Slack Channel by Joel
+def save_chart(chart, filename, scale_factor=1):
+    '''
+    Save an Altair chart using vl-convert
+
+    Parameters
+    ----------
+    chart : altair.Chart
+        Altair chart to save
+    filename : str
+        The path to save the chart to
+    scale_factor: int or float
+        The factor to scale the image resolution by.
+        E.g. A value of `2` means two times the default resolution.
+    '''
+    with alt.data_transformers.enable("default") and alt.data_transformers.disable_max_rows():
+        if filename.split('.')[-1] == 'svg':
+            with open(filename, "w") as f:
+                f.write(vlc.vegalite_to_svg(chart.to_dict()))
+        elif filename.split('.')[-1] == 'png':
+            with open(filename, "wb") as f:
+                f.write(vlc.vegalite_to_png(chart.to_dict(), scale=scale_factor))
+        else:
+            raise ValueError("Only svg and png formats are supported")
+
+            
 
 def perform_eda(train_data_path, out_folder):
     if not (os.path.exists(out_folder)):

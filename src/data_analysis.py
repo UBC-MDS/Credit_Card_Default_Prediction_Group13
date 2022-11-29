@@ -229,7 +229,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     """
     )
     print(cross_val_results_df)
-    cross_val_results_df.to_csv(out_path + "/model_selection.csv")
+    cross_val_results_df.to_csv(out_path + "model_selection.csv")
 
     # We select RandomForestClassifier for model hyperparameter optimization.
 
@@ -301,7 +301,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
         {"Feature": feature_names, "Coefficient": feat_importance}
     ).sort_values(by="Coefficient", ascending=False)
     print(feature_table)
-    feature_table.to_csv(out_path + "/feature_coefficient.csv")
+    feature_table.to_csv(out_path + "feature_coefficient.csv")
 
     # Add confusion matrix, predict score on test data.
     print(
@@ -318,12 +318,14 @@ def perform_ml_analysis(train_data, test_data, out_path):
         values_format="d",
         display_labels=["Non default", "default"],
     )
-    print("Precision_recall curve plot saved as " + out_path + "/confusion_matrix.png")
+    print("Precision_recall curve plot saved as " + out_path + "confusion_matrix.png")
     predictions = random_search.best_estimator_.predict(X_test)
     TN, FP, FN, TP = confusion_matrix(y_test, predictions).ravel()
     print("Confusion matrix for default payment data set")
     print(cm.confusion_matrix)
-    
+    plt.savefig(out_path + "confusion_matrix.png")
+    plt.clf()
+
     # Generate the classification report
 
     y_pred = random_search.best_estimator_.predict(X_test)
@@ -356,9 +358,9 @@ def perform_ml_analysis(train_data, test_data, out_path):
         label="threshold 0.5",
     )
     plt.legend(loc="best")
-    plt.savefig(out_path + "/precision_recall.png")
+    plt.savefig(out_path + "precision_recall.png")
     plt.clf()
-    print("Precision_recall curve plot saved as " + out_path + "/precision_recall.png")
+    print("Precision_recall curve plot saved as " + out_path + "precision_recall.png")
 
     # Evaluate the Receiver Operating Characteristic (ROC) curve of the optimized model.
 
@@ -380,12 +382,12 @@ def perform_ml_analysis(train_data, test_data, out_path):
         label="threshold 0.5",
     )
     plt.legend(loc="best")
-    plt.savefig(out_path + "/roc.png")
+    plt.savefig(out_path + "roc.png")
     plt.clf()
     print(
         "Receiver Operating Characteristic (ROC) curve plot saved as "
         + out_path
-        + "/roc.png"
+        + "roc.png"
     )
 
     # Finally, check the f1_score of the test data with our optimized model.
@@ -393,8 +395,8 @@ def perform_ml_analysis(train_data, test_data, out_path):
     print(f"The f1_score of the test data is", round(test_f1_score, 3))
 
 
-# Make sure you call this script in the utils folder
-# Example: python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results
+# Make sure you call this script in the repo's root path
+# Example: python3 src/data_analysis.py ./data/processed/train_cleaned.csv ./data/processed/test_cleaned.csv ./data/results/
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 

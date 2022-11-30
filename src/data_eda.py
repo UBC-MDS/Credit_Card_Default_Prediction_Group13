@@ -147,8 +147,8 @@ def perform_eda(train_data_path, out_folder):
 
 
 
-# Make sure you call this script in the utils folder
-# Example: python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/
+# Make sure you call this script in the repo's root path
+# Example: python3 src/data_eda.py ./data/processed/train_raw.csv ./data/eda_results/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 

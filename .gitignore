@@ -4,3 +4,4 @@ data/processed*
 utils/*.json
 utils/*.log
 utils/*node*
+*.DS_Store*

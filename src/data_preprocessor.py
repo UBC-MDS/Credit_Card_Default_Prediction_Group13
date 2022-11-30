@@ -44,8 +44,8 @@ def preprocess_data(raw_data_path, out_folder):
 
 
 
-# Make sure you call this script in the utils folder
-# Example: python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/
+# Make sure you call this script in the repo's root path
+# Example: python3 src/data_preprocessor.py ./data/raw/raw_data.xls ./data/processed/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 

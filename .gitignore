@@ -1,6 +1,4 @@
-data/raw*
-data/processed*
-*.xls
 utils/*.json
 utils/*.log
 utils/*node*
+*.DS_Store*

@@ -50,8 +50,8 @@ data/processed/test_cleaned.csv data/processed/test_raw.csv data/processed/train
 # 	python src/plotcount.py results/sierra.dat figures/sierra.png
 # 
 # # write the report
-# doc/count_report.html : figures/isles.png figures/abyss.png figures/sierra.png figures/last.png
-# 	Rscript -e "rmarkdown::render('doc/count_report.Rmd')"
+# doc/report.html : doc/report.Rmd doc/references.bib data/eda_results/categorical_result.png data/eda_results/binary_result.png data/eda_results/numeric_result.png data/results/confusion_matrix.png 
+#	Rscript -e "rmarkdown::render('doc/report.Rmd')"
 # 	
 # 
 # # clean :

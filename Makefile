@@ -30,8 +30,13 @@ data/results/confusion_matrix.png data/results/feature_coefficient.csv data/resu
 doc/report.html : doc/report.Rmd doc/references.bib data/eda_results/categorical_result.png data/eda_results/binary_result.png data/eda_results/numeric_result.png data/results/confusion_matrix.png 
 	Rscript -e "rmarkdown::render('doc/report.Rmd')"
 
-# # clean :
-# #	rm -f results/*.dat
-# #	rm -f figures/*.png
-# #	rm -f doc/*.html
+# # clean previous results
+clean :
+	rm -f data/eda_results/*.png
+	rm -f data/eda_results/*.csv
+	rm -f data/processed/*.csv
+	rm -f data/raw/*.xls
+	rm -f results/*.png
+	rm -f results/*.csv
+	rm -f doc/report.html
 

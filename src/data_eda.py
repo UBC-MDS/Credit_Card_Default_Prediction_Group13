@@ -142,8 +142,7 @@ def perform_eda(train_data_path, out_folder):
 
     save_chart(numeric_chart, out_path + 'numeric_result.png')
 
-    train_df.corr('spearman').style.background_gradient()
-    train_df.to_csv(out_path + 'corr.csv')
+    train_df.corr('spearman').to_csv(out_path + 'corr.csv')
 
 
 

@@ -27,14 +27,11 @@ data/results/confusion_matrix.png data/results/feature_coefficient.csv data/resu
 	python3 src/data_analysis.py data/processed/train_cleaned.csv data/processed/test_cleaned.csv data/results/
 
 # # write the report
-# doc/count_report.html : figures/isles.png figures/abyss.png figures/sierra.png figures/last.png
-# 	Rscript -e "rmarkdown::render('doc/count_report.Rmd')"
-
+doc/report.html : doc/report.Rmd doc/references.bib data/eda_results/categorical_result.png data/eda_results/binary_result.png data/eda_results/numeric_result.png data/results/confusion_matrix.png 
+	Rscript -e "rmarkdown::render('doc/report.Rmd')"
 
 # # clean :
 # #	rm -f results/*.dat
 # #	rm -f figures/*.png
 # #	rm -f doc/*.html
-#
-#
-#
+

@@ -36,7 +36,7 @@ clean :
 	rm -f data/eda_results/*.csv
 	rm -f data/processed/*.csv
 	rm -f data/raw/*.xls
-	rm -f results/*.png
-	rm -f results/*.csv
+	rm -f data/results/*.png
+	rm -f data/results/*.csv
 	rm -f doc/report.html
 

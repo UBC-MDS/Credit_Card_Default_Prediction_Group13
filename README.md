@@ -70,7 +70,7 @@ make clean
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/tree/Makefile_report_hw#dependencies).
 
-For reproducing the results in step-by-step manner, run the scripts below using terminal in a sequential manner in the src folder:
+For reproducing the results in step-by-step manner, run the scripts below using terminal in a sequential manner in the root directory of this project:
 
 ```
 python3 src/data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls data/raw/

@@ -52,7 +52,7 @@ def save_chart(chart, filename, scale_factor=1):
 
 def perform_eda(train_data_path, out_folder):
     if not (os.path.exists(out_folder)):
-        os.mkdir(out_folder)
+        os.makedirs(out_folder)
 
     headernames = [
         "ID",

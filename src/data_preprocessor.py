@@ -24,7 +24,7 @@ from sklearn.pipeline import Pipeline, make_pipeline
 # Split the data into train.csv and test.csv
 def preprocess_data(raw_data_path, out_folder):
     if not (os.path.exists(out_folder)):
-        os.mkdir(out_folder)
+        os.makedirs(out_folder)
 
     # Skipping 2nd row specifically for our credit default dataset...
     raw_df = pd.read_excel(raw_data_path, skiprows=[0])

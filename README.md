@@ -9,7 +9,8 @@
 
 ## About
 In the field of risk management, one of the most common problems is default prediction. This allows companies to predict the credibility of each person, analyze the risk level and optimize decisions for better business economics. In this project, the main question we are asking is:
-given a credit card holder's basic personal information (gender, education, age, history of past payment etc.), will the person default on next month's payment.
+
+**Given a credit card holder's basic personal information (gender, education, age, history of past payment etc.), will the person default on next month's payment?**
 
 The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
 

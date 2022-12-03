@@ -37,7 +37,7 @@ from scipy.stats import loguniform
 
 def perform_ml_analysis(train_data, test_data, out_path):
     if not os.path.exists(out_path):
-        os.mkdir(out_path)
+        os.makedirs(out_path)
 
     headernames = [
         "ID",

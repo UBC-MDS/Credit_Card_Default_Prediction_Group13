@@ -10,12 +10,13 @@
 ## About
 In the field of risk management, one of the most common problems is default prediction. This allows companies to predict the credibility of each person, analyze the risk level and optimize decisions for better business economics. In this project, we aim to learn and predict a credit card holder's credibility based on his/her basic personal information (gender, education, age, history of past payment etc. ).
 
+The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
 
 ## Research Question
 Through this project, we aim to answer the question: Which attributes are most important when we use machine learning models to predict the default? Specifically we would like to know if the `weight` of attributes would change when we employ different models. Answering this question is, from our perspective, of great importance because it allows to understand what attributes relate to credibility the most. We would also aim to a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
 
 ### Data Summary
-We use a dataset hosted by the UCI machine learning repository. Originally it is collected by researchers from Chung Hua University and Tamkang University. As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
+We use a dataset hosted by the UCI machine learning repository (1). Originally it is collected by researchers from Chung Hua University and Tamkang University (2). As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
 
 ### Data Analysis Plan
 Building machine learning models and score the performance of each model would be our major method to approach the dataset. Specifically to study the influence of each attribute, we will look into the models based on their performance and order the importance of attributes with weights.
@@ -49,21 +50,49 @@ The data download and analysis is dependent on the following
 
 ## Usage
 
-The automated data download can be performed via running the following command using terminal:
+### With Makefile
 
-`python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/`
+You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/tree/Makefile_report_hw#dependencies). 
+
+Then, you can run the command below using terminal in the root directory of this project to automatically run the full analysis and generate the final report. 
+
+```
+make all 
+```
+
+To delete all intermediate and result files, run the following command using terminal in the root directory of this project:
+
+```
+make clean
+```
+
+### Running each step
+
+You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/tree/Makefile_report_hw#dependencies).
+
+For reproducing the results in step-by-step manner, run the scripts below using terminal in a sequential manner in the src folder:
+
+```
+python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/
+```
 
 Some preprocessing, data cleaning and splitting can be performed via the following command:
 
-`python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/`
+```
+python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/
+```
 
 The EDA can be performed as:
 
-`python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/`
+```
+python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/
+```
 
 And finally, the model building and predictive analysis can be done by running the following code in the terminal:
 
-`python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results`
+```
+python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results
+```
 
 ## Report
 
@@ -76,4 +105,6 @@ We use MIT license for this project.
 
 ## References
 
-- Yeh, I. C., & Lien, C. H. (2009). The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. Expert Systems with Applications, 36(2), 2473-2480.
+1. The original data set is located [here.](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients)
+2. Yeh, I. C., & Lien, C. H. (2009). The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. Expert Systems with Applications, 36(2), 2473-2480.
+

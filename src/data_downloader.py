@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 # Downloads raw data from the Internet
 def download_data(url, to='./data/', ext_name='csv'):
     if not (os.path.exists(to)):
-        os.mkdir(to)
+        os.makedirs(to)
 
     file_data = requests.get(url).content
     with open(to + 'raw_data.' + ext_name, "wb") as file:

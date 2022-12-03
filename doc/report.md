@@ -3,16 +3,19 @@ Credibility Classification of Credit Card Clients
 Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 11/26/2022 (updated: 2022-12-02)
 
--   [Summary](#summary)
--   [Introduction](#introduction)
--   [Methods](#methods)
-    -   [Dataset](#dataset)
-    -   [Feature Descriptions](#feature-descriptions)
--   [Analysis](#analysis)
--   [Predictive Model](#predictive-model)
--   [Results](#results)
--   [Further Improvements](#further-improvements)
--   [References](#references)
+- <a href="#summary" id="toc-summary">Summary</a>
+- <a href="#introduction" id="toc-introduction">Introduction</a>
+- <a href="#methods" id="toc-methods">Methods</a>
+  - <a href="#dataset" id="toc-dataset">Dataset</a>
+  - <a href="#feature-descriptions" id="toc-feature-descriptions">Feature
+    Descriptions</a>
+- <a href="#analysis" id="toc-analysis">Analysis</a>
+- <a href="#predictive-model" id="toc-predictive-model">Predictive
+  Model</a>
+- <a href="#results" id="toc-results">Results</a>
+- <a href="#further-improvements" id="toc-further-improvements">Further
+  Improvements</a>
+- <a href="#references" id="toc-references">References</a>
 
 # Summary
 
@@ -70,13 +73,13 @@ high school; 4 = others.
 `Marital status`: 1 = married; 2 = single; 3 = others.  
 
 `PAY_X`: Ordinal feature. The history of monthly payment tracked from
-April to September, 2005, as follows: PAY\_1 = the repayment status in
-September, 2005; PAY\_2 = the repayment status in August, 2005; . .
-.;PAY\_6 = the repayment status in April, 2005. The measurement scale
-for the repayment status is: -2 = no payment required; -1 = pay duly; 1
-= payment delay for one month; 2 = payment delay for two months; . . .;
-8 = payment delay for eight months; 9 = payment delay for nine months
-and above.
+April to September, 2005, as follows: PAY_1 = the repayment status in
+September, 2005; PAY_2 = the repayment status in August, 2005; . .
+.;PAY_6 = the repayment status in April, 2005. The measurement scale for
+the repayment status is: -2 = no payment required; -1 = pay duly; 1 =
+payment delay for one month; 2 = payment delay for two months; . . .; 8
+= payment delay for eight months; 9 = payment delay for nine months and
+above.
 
 #### Binary Features
 
@@ -90,14 +93,14 @@ credit.
 
 `Age`: The age of the individual (years).  
 
-`BILL_AMTX`: Amount of bill statement (NT dollar). BILL\_AMT1 = amount
-of bill statement in September, 2005; BILL\_AMT2 = amount of bill
-statement in August, 2005; . . .; BILL\_AMT6 = amount of bill statement
-in April, 2005.  
+`BILL_AMTX`: Amount of bill statement (NT dollar). BILL_AMT1 = amount of
+bill statement in September, 2005; BILL_AMT2 = amount of bill statement
+in August, 2005; . . .; BILL_AMT6 = amount of bill statement in April,
+2005.  
 
-`PAY_AMTX`: Amount of previous payment (NT dollar). PAY\_AMT1 = amount
-paid in September, 2005; PAY\_AMT2 = amount paid in August, 2005; . .
-.;PAY\_AMT6 = amount paid in April, 2005.
+`PAY_AMTX`: Amount of previous payment (NT dollar). PAY_AMT1 = amount
+paid in September, 2005; PAY_AMT2 = amount paid in August, 2005; . .
+.;PAY_AMT6 = amount paid in April, 2005.
 
 [Link to Source
 Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
@@ -161,7 +164,7 @@ X
 ID
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-LIMIT\_BAL
+LIMIT_BAL
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 SEX
@@ -176,58 +179,58 @@ MARRIAGE
 AGE
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_0
+PAY_0
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_2
+PAY_2
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_3
+PAY_3
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_4
+PAY_4
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_5
+PAY_5
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_6
+PAY_6
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT1
+BILL_AMT1
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT2
+BILL_AMT2
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT3
+BILL_AMT3
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT4
+BILL_AMT4
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT5
+BILL_AMT5
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-BILL\_AMT6
+BILL_AMT6
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT1
+PAY_AMT1
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT2
+PAY_AMT2
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT3
+PAY_AMT3
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT4
+PAY_AMT4
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT5
+PAY_AMT5
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-PAY\_AMT6
+PAY_AMT6
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 default.payment.next.month
@@ -317,7 +320,7 @@ ID
 </tr>
 <tr>
 <td style="text-align:left;">
-LIMIT\_BAL
+LIMIT_BAL
 </td>
 <td style="text-align:right;">
 0.03
@@ -717,7 +720,7 @@ AGE
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_0
+PAY_0
 </td>
 <td style="text-align:right;">
 -0.02
@@ -797,7 +800,7 @@ PAY\_0
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_2
+PAY_2
 </td>
 <td style="text-align:right;">
 0.00
@@ -877,7 +880,7 @@ PAY\_2
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_3
+PAY_3
 </td>
 <td style="text-align:right;">
 -0.01
@@ -957,7 +960,7 @@ PAY\_3
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_4
+PAY_4
 </td>
 <td style="text-align:right;">
 0.00
@@ -1037,7 +1040,7 @@ PAY\_4
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_5
+PAY_5
 </td>
 <td style="text-align:right;">
 -0.01
@@ -1117,7 +1120,7 @@ PAY\_5
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_6
+PAY_6
 </td>
 <td style="text-align:right;">
 0.00
@@ -1197,7 +1200,7 @@ PAY\_6
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT1
+BILL_AMT1
 </td>
 <td style="text-align:right;">
 0.02
@@ -1277,7 +1280,7 @@ BILL\_AMT1
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT2
+BILL_AMT2
 </td>
 <td style="text-align:right;">
 0.01
@@ -1357,7 +1360,7 @@ BILL\_AMT2
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT3
+BILL_AMT3
 </td>
 <td style="text-align:right;">
 0.02
@@ -1437,7 +1440,7 @@ BILL\_AMT3
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT4
+BILL_AMT4
 </td>
 <td style="text-align:right;">
 0.04
@@ -1517,7 +1520,7 @@ BILL\_AMT4
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT5
+BILL_AMT5
 </td>
 <td style="text-align:right;">
 0.02
@@ -1597,7 +1600,7 @@ BILL\_AMT5
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT6
+BILL_AMT6
 </td>
 <td style="text-align:right;">
 0.02
@@ -1677,7 +1680,7 @@ BILL\_AMT6
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT1
+PAY_AMT1
 </td>
 <td style="text-align:right;">
 0.02
@@ -1757,7 +1760,7 @@ PAY\_AMT1
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT2
+PAY_AMT2
 </td>
 <td style="text-align:right;">
 0.06
@@ -1837,7 +1840,7 @@ PAY\_AMT2
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT3
+PAY_AMT3
 </td>
 <td style="text-align:right;">
 0.09
@@ -1917,7 +1920,7 @@ PAY\_AMT3
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT4
+PAY_AMT4
 </td>
 <td style="text-align:right;">
 0.02
@@ -1997,7 +2000,7 @@ PAY\_AMT4
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT5
+PAY_AMT5
 </td>
 <td style="text-align:right;">
 0.01
@@ -2077,7 +2080,7 @@ PAY\_AMT5
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT6
+PAY_AMT6
 </td>
 <td style="text-align:right;">
 0.04
@@ -2249,12 +2252,12 @@ using the f1 score as our metric.
 
 The following models were tested and compared:
 
--   Decision Tree Classifier
--   K Neighbours Classifier
--   RBF SVM
--   Logistic Regression Model
--   Ridge Classifier Model
--   Random Forest Classifier
+- Decision Tree Classifier
+- K Neighbours Classifier
+- RBF SVM
+- Logistic Regression Model
+- Ridge Classifier Model
+- Random Forest Classifier
 
 From the cross validation scores for each of these models, the mean
 validation score returned highest for the Random Forest Classifier as
@@ -2302,7 +2305,7 @@ Coefficient
 <tbody>
 <tr>
 <td style="text-align:left;">
-PAY\_0
+PAY_0
 </td>
 <td style="text-align:right;">
 0.5280450
@@ -2310,7 +2313,7 @@ PAY\_0
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT3
+BILL_AMT3
 </td>
 <td style="text-align:right;">
 0.1448476
@@ -2318,7 +2321,7 @@ BILL\_AMT3
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT2
+BILL_AMT2
 </td>
 <td style="text-align:right;">
 0.1113211
@@ -2342,7 +2345,7 @@ AGE
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_3
+PAY_3
 </td>
 <td style="text-align:right;">
 0.0687031
@@ -2350,7 +2353,7 @@ PAY\_3
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_2
+PAY_2
 </td>
 <td style="text-align:right;">
 0.0653872
@@ -2358,7 +2361,7 @@ PAY\_2
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT4
+BILL_AMT4
 </td>
 <td style="text-align:right;">
 0.0491495
@@ -2366,7 +2369,7 @@ BILL\_AMT4
 </tr>
 <tr>
 <td style="text-align:left;">
-MARRIAGE\_1
+MARRIAGE_1
 </td>
 <td style="text-align:right;">
 0.0482283
@@ -2374,7 +2377,7 @@ MARRIAGE\_1
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_5
+PAY_5
 </td>
 <td style="text-align:right;">
 0.0342673
@@ -2382,7 +2385,7 @@ PAY\_5
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_4
+PAY_4
 </td>
 <td style="text-align:right;">
 0.0160220
@@ -2390,7 +2393,7 @@ PAY\_4
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT6
+BILL_AMT6
 </td>
 <td style="text-align:right;">
 0.0017331
@@ -2398,7 +2401,7 @@ BILL\_AMT6
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_6
+PAY_6
 </td>
 <td style="text-align:right;">
 -0.0151600
@@ -2406,7 +2409,7 @@ PAY\_6
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT5
+BILL_AMT5
 </td>
 <td style="text-align:right;">
 -0.0273464
@@ -2414,7 +2417,7 @@ BILL\_AMT5
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT6
+PAY_AMT6
 </td>
 <td style="text-align:right;">
 -0.0294433
@@ -2422,7 +2425,7 @@ PAY\_AMT6
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT4
+PAY_AMT4
 </td>
 <td style="text-align:right;">
 -0.0378034
@@ -2430,7 +2433,7 @@ PAY\_AMT4
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT5
+PAY_AMT5
 </td>
 <td style="text-align:right;">
 -0.0378806
@@ -2438,7 +2441,7 @@ PAY\_AMT5
 </tr>
 <tr>
 <td style="text-align:left;">
-MARRIAGE\_2
+MARRIAGE_2
 </td>
 <td style="text-align:right;">
 -0.0972138
@@ -2446,7 +2449,7 @@ MARRIAGE\_2
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT3
+PAY_AMT3
 </td>
 <td style="text-align:right;">
 -0.0973026
@@ -2454,7 +2457,7 @@ PAY\_AMT3
 </tr>
 <tr>
 <td style="text-align:left;">
-SEX\_2
+SEX_2
 </td>
 <td style="text-align:right;">
 -0.1029560
@@ -2462,7 +2465,7 @@ SEX\_2
 </tr>
 <tr>
 <td style="text-align:left;">
-LIMIT\_BAL
+LIMIT_BAL
 </td>
 <td style="text-align:right;">
 -0.1082766
@@ -2470,7 +2473,7 @@ LIMIT\_BAL
 </tr>
 <tr>
 <td style="text-align:left;">
-MARRIAGE\_3
+MARRIAGE_3
 </td>
 <td style="text-align:right;">
 -0.1646616
@@ -2478,7 +2481,7 @@ MARRIAGE\_3
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT1
+PAY_AMT1
 </td>
 <td style="text-align:right;">
 -0.1881361
@@ -2486,7 +2489,7 @@ PAY\_AMT1
 </tr>
 <tr>
 <td style="text-align:left;">
-PAY\_AMT2
+PAY_AMT2
 </td>
 <td style="text-align:right;">
 -0.2046310
@@ -2494,7 +2497,7 @@ PAY\_AMT2
 </tr>
 <tr>
 <td style="text-align:left;">
-BILL\_AMT1
+BILL_AMT1
 </td>
 <td style="text-align:right;">
 -0.3634575
@@ -2541,7 +2544,7 @@ ReadR(Wickham, Hester, and Bryan 2022), Knitr (Xie 2022), kableExtra
 and the following python (Python 2021) packages: pandas(Snider and Swedo
 2004), numpy(Bressert 2012), scikit-learn(Pedregosa et al. 2011),
 altair(VanderPlas et al. 2018), matplotlib (Bisong 2019), and
-uci\_ml\_data\_set (n.d.).
+uci_ml_data_set (n.d.).
 
 # References
 

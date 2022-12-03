@@ -73,30 +73,30 @@ You can reproduce the results in this GitHub repository by cloning and installin
 For reproducing the results in step-by-step manner, run the scripts below using terminal in a sequential manner in the src folder:
 
 ```
-python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/
+python3 src/data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls data/raw/
 ```
 
 Some preprocessing, data cleaning and splitting can be performed via the following command:
 
 ```
-python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/
+python3 src/data_preprocessor.py data/raw/raw_data.xls data/processed/
 ```
 
 The EDA can be performed as:
 
 ```
-python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/
+python3 src/data_eda.py data/processed/train_raw.csv data/eda_results/
 ```
 
 And finally, the model building and predictive analysis can be done by running the following code in the terminal:
 
 ```
-python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results
+python3 src/data_analysis.py data/processed/train_cleaned.csv data/processed/test_cleaned.csv data/results
 ```
 
 ## Report
 
-A report summarizing the results of our study can be found [here](https://github.com/UBC-MDS/DSCI_522_Bankers_of_the_Galaxy_Group_13/blob/main/doc/report.html).
+A report summarizing the results of our study can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
 
 
 ## License

@@ -50,6 +50,25 @@ The data download and analysis is dependent on the following
     - pandas profiler 3.4.0
 4. RStudio 2022.07.1+554 
 
+The complete list of packages used can be found in the [environment file](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/makefile_chester/environment.yaml).
+
+The steps to using the environment are given below:
+
+Creating an environment
+```
+conda env create --file environment.yaml
+```
+
+Activate the environment 
+```
+conda activate credit_default_env
+```
+
+Deactivate the environment 
+```
+conda deactivate
+```
+
 ## Usage
 
 ### With Makefile

@@ -49,21 +49,37 @@ The data download and analysis is dependent on the following
 
 ## Usage
 
-The automated data download can be performed via running the following command using terminal:
+### With Makefile
 
-`python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/`
+You can reproduce the results in this GitHub repository by cloning and installing all necessary dependencies. Then, you can run the command below using terminal in the root directory of this project to automatically run the full analysis and generate the final report. 
+
+```
+make all 
+```
+
+To delete all intermediate and result files, run the following command using terminal in the root directory of this project:
+
+```
+make clean
+```
+
+### Running each step
+
+For reproducing the results in step-by-step manner, follow the command using terminal:
+
+```python3 data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ../data/raw/```
 
 Some preprocessing, data cleaning and splitting can be performed via the following command:
 
-`python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/`
+```python3 data_preprocessor.py ../data/raw/raw_data.xls ../data/processed/```
 
 The EDA can be performed as:
 
-`python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/`
+```python3 data_eda.py ../data/processed/train_raw.csv ../data/eda_results/```
 
 And finally, the model building and predictive analysis can be done by running the following code in the terminal:
 
-`python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results`
+```python3 data_analysis.py ../data/processed/train_cleaned.csv ../data/processed/test_cleaned.csv ../data/results```
 
 ## Report
 

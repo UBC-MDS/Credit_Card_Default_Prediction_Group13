@@ -117,7 +117,7 @@ python3 src/data_analysis.py data/processed/train_cleaned.csv data/processed/tes
 
 ## Report
 
-A report summarizing the results of our study can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
+A report summarizing the results of our study can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/main/doc/report.md).
 
 
 ## License

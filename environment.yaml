@@ -26,3 +26,22 @@ dependencies:
   - altair_data_server
   - altair_saver
 prefix: /opt/miniconda3
+  - ipykernel
+  - matplotlib>=3.2.2
+  - scikit-learn>=1.1.3
+  - requests>=2.24.0
+  - graphviz
+  - python-graphviz
+  - eli5
+  - shap
+  - jinja2
+  - altair_saver
+  - selenium<4.3.0
+  - pandas<1.5
+  - imbalanced-learn
+  - pip
+  - lightgbm
+  - pip:
+    - joblib==1.1.0
+    - mglearn
+    - psutil>=5.7.2

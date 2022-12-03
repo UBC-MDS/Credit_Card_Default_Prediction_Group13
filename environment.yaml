@@ -1,0 +1,28 @@
+name: 'credit_default_env'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - conda
+  - python=3.10
+  - python.app
+  - jupyterlab
+  - jupyterlab-spellchecker
+  - pandas
+  - jupytext
+  - memory_profiler
+  - jupyterlab-git
+  - black
+  - jupyterlab_code_formatter
+  - flake8
+  - openpyxl
+  - wget
+  - rasterio=1.3.1
+  - nb_conda_kernels
+  - docopt
+  - xlrd
+  - ipywidgets
+  - altair
+  - altair_data_server
+  - altair_saver
+prefix: /opt/miniconda3

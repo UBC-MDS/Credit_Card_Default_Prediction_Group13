@@ -91,28 +91,33 @@ make clean
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/tree/Makefile_report_hw#dependencies).
 
+
+*Note about the usage of python3:*  
+*Python 2 is no longer in use since 2020, and because Python 3 and Python 2 do not share the exactly same language syntax, many popular packages are developed in Python 3 instead of Python 2. Hence in this project, please use Python3 so the dependent packages can be properly run.*
+
+
 For reproducing the results in step-by-step manner, run the scripts below using terminal in a sequential manner in the root directory of this project:
 
 ```
-python3 src/data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls data/raw/
+python3 src/data_downloader.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls --path=data/raw/
 ```
 
 Some preprocessing, data cleaning and splitting can be performed via the following command:
 
 ```
-python3 src/data_preprocessor.py data/raw/raw_data.xls data/processed/
+python3 src/data_preprocessor.py --input=data/raw/raw_data.xls --output=data/processed/
 ```
 
 The EDA can be performed as:
 
 ```
-python3 src/data_eda.py data/processed/train_raw.csv data/eda_results/
+python3 src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
 ```
 
 And finally, the model building, model scoring, and predictive analysis can be done by running the following code in the terminal:
 
 ```
-python3 src/data_analysis.py data/processed/train_cleaned.csv data/processed/test_cleaned.csv data/results
+python3 src/data_analysis.py --traindata=data/processed/train_cleaned.csv --testdata=data/processed/test_cleaned.csv --output=results/model/
 ```
 
 To render the final report:
@@ -120,9 +125,6 @@ To render the final report:
 ```
 Rscript -e "rmarkdown::render('doc/report.Rmd')"
 ```
-
-* Note about the usage of python3 *
-Python 2 is no longer in use since 2020, and because Python 3 and Python 2 do not share the exactly same language syntax, many popular packages are developed in Python 3 instead of Python 2. Hence in this project, please use Python3 so the dependent packages can be properly run.
 
 ## Report
 

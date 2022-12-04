@@ -55,5 +55,16 @@ if __name__ == '__main__':
     input_path = arguments['--input'] # Points to the raw dataset
     out_folder = arguments['--output'][0]
 
+    # Tests arguments
+    assert input_path.endswith('.xls')
+    assert 'data' in out_folder and 'processed' in out_folder
+
     preprocess_data(input_path, out_folder)
+
+    # Tests that the files are generated as expected
+    assert os.path.exists('./data/processed/test_cleaned.csv')
+    assert os.path.exists('./data/processed/train_cleaned.csv')
+    assert os.path.exists('./data/processed/test_raw.csv')
+    assert os.path.exists('./data/processed/train_raw.csv')
+
     print("-- Cleaned data available at: {}".format(out_folder))

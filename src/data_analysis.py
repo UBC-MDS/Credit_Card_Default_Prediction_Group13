@@ -114,6 +114,10 @@ def perform_ml_analysis(train_data, test_data, out_path):
         "PAY_6",
         "EDUCATION",
     ]
+    
+    scores_output={}
+    scores_output["target_0"]=train_df["default payment next month"].value_counts()[0]
+    scores_output["target_1"]=train_df["default payment next month"].value_counts()[1]
 
     # Create the column transformer
     preprocessor = make_column_transformer(
@@ -264,6 +268,8 @@ def perform_ml_analysis(train_data, test_data, out_path):
     """
     )
     print(random_search.best_estimator_)
+    scores_output['logisticregression__C'] = random_search.best_estimator_.get_params()['logisticregression__C']
+    scores_output['logisticregression__class_weight'] = random_search.best_estimator_.get_params()['logisticregression__class_weight']
 
     # This is an improvement compared to the mean validation f1 score using default parameters.
     print(
@@ -274,6 +280,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     """
     )
     print(random_search.best_score_)
+    scores_output['best_model_f1_score'] = random_search.best_score_
 
     # This is the optimized hyperparameter.
     print(
@@ -328,6 +335,11 @@ def perform_ml_analysis(train_data, test_data, out_path):
     print(cm.confusion_matrix)
     plt.savefig(out_path + "confusion_matrix.png")
     plt.clf()
+    
+    scores_output['TN'] = cm.confusion_matrix[0,0]
+    scores_output['FP'] = cm.confusion_matrix[0,1]
+    scores_output['FN'] = cm.confusion_matrix[1,0]
+    scores_output['TP'] = cm.confusion_matrix[1,1]
 
     # Generate the classification report
 
@@ -396,6 +408,10 @@ def perform_ml_analysis(train_data, test_data, out_path):
     # Finally, check the f1_score of the test data with our optimized model.
     test_f1_score = f1_score(y_test, random_search.best_estimator_.predict(X_test))
     print(f"The f1_score of the test data is", round(test_f1_score, 3))
+    
+    scores_output['model_f1_score'] = test_f1_score
+    scores_output = pd.Series(scores_output)
+    scores_output.to_csv(out_path + "model_score.csv")
 
 
 # Make sure you call this script in the repo's root path

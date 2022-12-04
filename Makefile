@@ -29,13 +29,13 @@ data/processed/test_cleaned.csv data/processed/test_raw.csv data/processed/train
 # Perform exploratory data analysis on the cleaned train dataset and visualize the distribution
 # of features. This generates figures and tables necessary for the final report. 
 results/eda_results/binary_result.png results/eda_results/categorical_result.png results/eda_results/corr.csv results/eda_results/numeric_result.png : data/processed/train_raw.csv src/data_eda.py
-  python3 src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
+	python3 src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
 
 # Build and compare different machine learning models, perform hyperparameter optimization,
 # and report the final score based on the best model selected. Figures and tables are generate
 # for the report:
 results/model/confusion_matrix.png results/model/feature_coefficient.csv results/model/model_selection.csv results/model/precision_recall.png results/model/roc.png : data/processed/train_cleaned.csv data/processed/test_cleaned.csv src/data_analysis.py
-  python3 src/data_analysis.py --traindata=data/processed/train_cleaned.csv --testdata=data/processed/test_cleaned.csv --output=results/model/
+	python3 src/data_analysis.py --traindata=data/processed/train_cleaned.csv --testdata=data/processed/test_cleaned.csv --output=results/model/
 
 # Generate the report using an automated R markdown file. The Rmd file loads the previously 
 # generated figures and tables, and presents them in the final file generated. 

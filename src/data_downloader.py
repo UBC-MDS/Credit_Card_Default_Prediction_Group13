@@ -1,3 +1,6 @@
+# authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
+# date: 2022-11-24
+
 """Usage: data_downloader.py [LINK] [PATH] ...
 
 Arguments:
@@ -13,7 +16,7 @@ import requests, os
 from sklearn.model_selection import train_test_split
 
 # Downloads raw data from the Internet
-def download_data(url, to='./data/', ext_name='csv'):
+def download_data(url, to='./data/', ext_name='csv'):  
     if not (os.path.exists(to)):
         os.makedirs(to)
 

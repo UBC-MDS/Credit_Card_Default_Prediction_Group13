@@ -148,7 +148,7 @@ We see a strong correlation between our target and payment history as well as th
 ```{r fig.align='center'}
 read.csv("../data/eda_results/corr.csv") %>%
   mutate_if(is.numeric, round, 2) %>%
-  kable(caption = "Table 1. Correlation Matrix") %>%
+  kable(caption = "Table 1. Correlation Matrix of all features") %>%
   kable_styling(full_width = F, font_size = 10) %>%
   kable_classic_2(full_width = F) %>%
   scroll_box(width = "100%", height = "200px")

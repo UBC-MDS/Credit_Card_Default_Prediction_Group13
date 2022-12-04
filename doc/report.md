@@ -1,15 +1,14 @@
 Credibility Classification of Credit Card Clients
 ================
 Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
-11/26/2022 (updated: 2022-12-02)
+11/26/2022 (updated: 2022-12-04)
 
 - <a href="#summary" id="toc-summary">Summary</a>
 - <a href="#introduction" id="toc-introduction">Introduction</a>
 - <a href="#methods" id="toc-methods">Methods</a>
   - <a href="#dataset" id="toc-dataset">Dataset</a>
-  - <a href="#feature-descriptions" id="toc-feature-descriptions">Feature
-    Descriptions</a>
 - <a href="#analysis" id="toc-analysis">Analysis</a>
+  - <a href="#eda" id="toc-eda">EDA</a>
 - <a href="#predictive-model" id="toc-predictive-model">Predictive
   Model</a>
 - <a href="#results" id="toc-results">Results</a>
@@ -17,7 +16,7 @@ Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
   Improvements</a>
 - <a href="#references" id="toc-references">References</a>
 
-# Summary
+## Summary
 
 In the field of risk management, one of the most common problems is
 default prediction. This allows companies to predict the credibility of
@@ -36,7 +35,7 @@ they have. Incorrect predictions of either type can be costly for
 financial institutions and thus we will continue to study our data and
 improve our model before it is put into production.
 
-# Introduction
+## Introduction
 
 Through this project, we aim to answer the question: Which attributes
 are most important when we use machine learning models to predict the
@@ -48,9 +47,9 @@ aim to perform a comparative study of the mainstream machine learning
 classification models to be able to identify how the best performing
 model assigns weights to the various model features.
 
-# Methods
+## Methods
 
-## Dataset
+### Dataset
 
 We use a dataset hosted by the UCI machine learning repository.
 Originally it is collected by researchers from Chung Hua University and
@@ -63,54 +62,74 @@ testing set (20%) for further use. The data attributes range from
 client’s gender, age, education, previous payment history, credit amount
 etc.
 
-## Feature Descriptions
+#### Feature Descriptions
 
 #### Categorical Features
 
-`Education`: Ordinal feature. 1 = graduate school; 2 = university; 3 =
-high school; 4 = others.  
+`Education` : 1 = graduate school; 2 = university; 3 = high school; 4 =
+other  
 
-`Marital status`: 1 = married; 2 = single; 3 = others.  
+`Marital status` : 1 = married; 2 = single; 3 = others  
 
-`PAY_X`: Ordinal feature. The history of monthly payment tracked from
-April to September, 2005, as follows: PAY_1 = the repayment status in
-September, 2005; PAY_2 = the repayment status in August, 2005; . .
-.;PAY_6 = the repayment status in April, 2005. The measurement scale for
-the repayment status is: -2 = no payment required; -1 = pay duly; 1 =
-payment delay for one month; 2 = payment delay for two months; . . .; 8
-= payment delay for eight months; 9 = payment delay for nine months and
-above.
+`PAY_X` , the history of monthly payment tracked from April to
+September, 2005 :
+
+PAY_0 = repayment status in September, 2005;  
+PAY_2 = repayment status in August, 2005;  
+PAY_3 = repayment status in July, 2005;  
+PAY_4 = repayment status in June, 2005;  
+PAY_5 = the repayment status in May, 2005;  
+PAY_6 = the repayment status in April, 2005  
+
+Scale for `PAY_X` :
+
+-2 for no payment required;  
+-1 = pay duly;  
+1 = payment delay for one month;  
+2 = payment delay for two months;  
+… 9 = payment delay for nine months and above
 
 #### Binary Features
 
-`Sex` is reported as a binary feature (1 = male; 2 = female).
+`Sex` : 1 = male; 2 = female
 
 #### Numeric features
 
-`LIMIT_BAL`: The amount of the given credit (NT dollar): it includes
-both the individual consumer credit and his/her family (supplementary)
-credit.  
+`LIMIT_BAL` : the amount of given credit (NT dollar), includes both the
+individual consumer credit and his/her family (supplementary) credit.  
 
-`Age`: The age of the individual (years).  
+`Age` : the age of the individual (years).  
 
-`BILL_AMTX`: Amount of bill statement (NT dollar). BILL_AMT1 = amount of
-bill statement in September, 2005; BILL_AMT2 = amount of bill statement
-in August, 2005; . . .; BILL_AMT6 = amount of bill statement in April,
-2005.  
+`BILL_AMTX` : the amount of bill statement (NT dollar).  
 
-`PAY_AMTX`: Amount of previous payment (NT dollar). PAY_AMT1 = amount
-paid in September, 2005; PAY_AMT2 = amount paid in August, 2005; . .
-.;PAY_AMT6 = amount paid in April, 2005.
+BILL_AMT1 = amount of bill statement in September, 2005;  
+BILL_AMT2 = amount of bill statement in August, 2005;  
+BILL_AMT3 = amount of bill statement in July, 2005;  
+BILL_AMT4 = amount of bill statement in June, 2005;  
+BILL_AMT5 = amount of bill statement in May, 2005;  
+BILL_AMT6 = amount of bill statement in April, 2005  
+
+`PAY_AMTX` : Amount of previous payment (NT dollar)  
+
+PAY_AMT1 = amount paid in September, 2005;  
+PAY_AMT2 = amount paid in August, 2005;  
+PAY_AMT2 = amount paid in July, 2005;  
+PAY_AMT2 = amount paid in June, 2005;  
+PAY_AMT2 = amount paid in May, 2005;  
+PAY_AMT2 = amount paid in April, 2005  
 
 [Link to Source
 Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
-# Analysis
+## Analysis
 
-#### EDA
+### EDA
 
-There are 30,000 observations of credit card clients in our dataset with
-no missing values in any rows or columns.
+Our data has been split into training and testing splits, with 80% of
+the data (30,000 observations) in the training set and 20% (6,000
+observations) in the test data.
+
+There are no missing values in any rows or columns.
 
 Upon our first look at the data, we found some features containing
 ambiguous categories. We cleaned up the data so the categories were more
@@ -129,12 +148,26 @@ We have categorical features such as marriage, education, and monthly
 payment history. Below is the distribution of our target class according
 to the various categories.
 
-<img src="../data/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features" width="95%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="../results/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features" width="95%" />
+<p class="caption">
+**Figure 1.** Distribution of Categorical Features
+</p>
+
+</div>
 
 There is one binary feature in our data set: sex of the client. There is
 a higher proportion of female clients who have defaulted in our dataset.
 
-<img src="../data/eda_results/binary_result.png" alt="**Figure 2.** Distribution of Binary Feature" width="75%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="../results/eda_results/binary_result.png" alt="**Figure 2.** Distribution of Binary Feature" width="75%" />
+<p class="caption">
+**Figure 2.** Distribution of Binary Feature
+</p>
+
+</div>
 
 Numeric features include bill amounts, payment amounts, and age of the
 client. We get an idea that the default ratio is not dependent on the
@@ -142,7 +175,14 @@ months, however, we will verify this using our prediction model. We also
 see that there is a slight increase in the default ratio in the middle
 to late age range of our clients.
 
-<img src="../data/eda_results/numeric_result.png" alt="**Figure 3.** Distribution of Numeric Feature" width="95%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="../results/eda_results/numeric_result.png" alt="**Figure 3.** Distribution of Numeric Feature" width="95%" />
+<p class="caption">
+**Figure 3.** Distribution of Numeric Feature
+</p>
+
+</div>
 
 Below is the correlation matrix for all of our features. We see a strong
 correlation between our target and payment history as well as the credit
@@ -153,7 +193,7 @@ style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; o
 
 <table class="table lightable-classic-2" style="font-size: 10px; width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption style="font-size: initial !important;">
-Table 1. Correlation Matrix
+Table 1. Correlation Matrix of all features
 </caption>
 <thead>
 <tr>
@@ -2243,14 +2283,16 @@ default payment next month
 
 </div>
 
-# Predictive Model
+## Predictive Model
 
 We are interested in finding clients who are likely to default on their
 next payment but falsely predicting a client will default can be costly
-in terms of customer loyalty. Therefore, we chose to build our model
-using the f1 score as our metric.
+in terms of customer loyalty.
 
-The following models were tested and compared:
+Therefore, we chose to build our model using the f1 score as our metric.
+
+The following models were tested with default hyperparameters and
+compared:
 
 - Decision Tree Classifier
 - K Neighbours Classifier
@@ -2261,35 +2303,20 @@ The following models were tested and compared:
 
 From the cross validation scores for each of these models, the mean
 validation score returned highest for the Random Forest Classifier as
-0.47. However, we chose to use the Logistic Regression Classifier so
-that we are able to get a sense of whether a feature has a positive or
-negative impact on our prediction.
+0.47. However, we chose to use the Logistic Regression Classifier
+instead so we are able to get a sense of whether a feature has a
+positive or negative impact on our prediction.
 
 We then performed hyperparameter optimization for the Logistic
 Regression model to find our optimum hyperparamater `C` value as `0.438`
 and `class_weight = balanced`. Using our model with optimized
 hyperparameters, the f1 validation score returned was 0.479.
 
-# Results
+## Results
 
 We used our optimized Logistic Regression model on the test data of
-6,000 clients. The f1 score on the test data was 0.467.
-
-From the coefficient table below, we see the most important positively
-associated features is `PAY_0`: the default history of the client. This
-is expected because the longer a client has delayed their payments, the
-more likely they are to default in that month. `BILL_AMT3` was the
-second strongest positively associated feature returned from our model -
-which corresponds to the bill amount due in the month of July. This is
-also comparable to the bill amounts of the neighbouring months.
-
-The strongest negative coefficient was `BILL_AMT1` which is expected as
-the lower the amount due in the previous month, the higher the likely a
-client will default. Also, `PAY_AMT2` was a strong predicting variable
-for the default classification. This also makes sense as higher payments
-in recent month will result in less likelihood of a client defaulting.
-
-Below is the table of the coefficients of all the features.
+6,000 clients. The f1 score on the test data was 0.467. Below are the
+regression coefficients for our features.
 
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2506,10 +2533,35 @@ BILL_AMT1
 </tbody>
 </table>
 
+Our strongest positively correlated feature was `PAY_0`: the default
+history of the client. This is expected because the longer a client has
+delayed their payments as of September 2005, when the data was
+collected, the more likely they are to default.
+
+`BILL_AMT3` and `BILL_AMT2` were also strong positive coefficients. The
+higher the statement amount in the previous months (July and August),
+the more likely the client will default.
+
+The strongest negative coefficient was `BILL_AMT1` which is expected as
+the higher the amount due in the September statement, the higher the
+likely a client will default that same month.
+
+Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated
+variables for our model. This also makes sense as higher payments in
+recent months (August and September) will result in less likelihood of a
+client defaulting.
+
 Our model made 4,141 correct predictions for our clients, out of 6,000
 (69%).
 
-<img src="../data/results/confusion_matrix.png" alt="**Figure 4.** Confusion Matrix" width="50%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="../results/model/confusion_matrix.png" alt="**Figure 4.** Confusion Matrix" width="50%" />
+<p class="caption">
+**Figure 4.** Confusion Matrix
+</p>
+
+</div>
 
 We predicted 494 clients would not default and make their payment when
 in fact, they would not. These false predictions would be costly for the
@@ -2524,7 +2576,7 @@ Our model did not perform as well as we hoped with an f1 test score of
 relations that our model was not able to fit well to and further
 improvements will need to be made before it is put into production.
 
-# Further Improvements
+## Further Improvements
 
 Several things could be done to further improve this model. First of
 all, further optimization through feature engineering and feature
@@ -2546,7 +2598,7 @@ and the following python (Python 2021) packages: pandas(Snider and Swedo
 altair(VanderPlas et al. 2018), matplotlib (Bisong 2019), and
 uci_ml_data_set (n.d.).
 
-# References
+## References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 

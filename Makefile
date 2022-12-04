@@ -43,7 +43,12 @@ doc/report.md doc/report.html: doc/report.Rmd doc/references.bib data/eda_result
 
 # Clean data and report files. 
 clean :
-	rm -rf data
-	rm -f doc/report.md
-	rm -f doc/report.html
+	rm -f data/eda_results/*.png	# remove all eda figures
+	rm -f data/eda_results/*.csv	# remove eda table
+	rm -f data/processed/*.csv	# remove preprocessed data
+	rm -f data/raw/*.xls		# remove raw data
+	rm -f data/results/*.png	# remove analysis figures
+	rm -f data/results/*.csv	# remove analysis tables
+	rm -f doc/report.md		# remove report markdown file
+	rm -f doc/report.html		# remove report html file
 

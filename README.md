@@ -65,7 +65,7 @@ Our project is dependent on Python 3 with the following packages:
 And R, specifically we use RStudio of version:
 - RStudio 2022.07.1+554 
 
-The complete list of packages used can be found in the [environment file](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/makefile_chester/environment.yaml).
+The complete list of packages used can be found in the [environment file](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/main/environment.yaml).
 
 The steps to using the environment are given below:
 

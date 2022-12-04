@@ -40,15 +40,30 @@ Our preliminary EDA includes looking for naay. missing values and for unclean da
 
 ## Dependencies
 
-The data download and analysis is dependent on the following
-1. docopt 0.6.2
-2. xlrd 2.0.1
-3. Python 3.10.6 with the following packages
-    - scikit-learn>=1.1.3
-    - altair_data_server
-    - pandas<1.5
-    - pandas profiler 3.4.0
-4. RStudio 2022.07.1+554 
+Our project is dependent on Python 3 with the following packages:
+- altair==4.2.0
+- vl-convert-python==0.5.0
+- docopt=0.6.2
+- numpy=1.23.3
+- ipykernel
+- scikit-learn==1.1.2
+- pandas=1.4.4
+- requests>=2.24.0
+- scikit-learn=1.1.2
+- scipy=1.9.2
+- ipython>=7.15
+- altair_saver
+- selenium<4.3.0
+- matplotlib>=3.5.3
+- pandas-profiling
+- pandoc
+- joblib==1.1.0
+- psutil>=5.7.2
+- openpyxl>=3.0.0
+- xlrd>=2.0.1
+- xlwt>=1.3.0
+And R, specifically we use RStudio of version:
+- RStudio 2022.07.1+554 
 
 The complete list of packages used can be found in the [environment file](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/makefile_chester/environment.yaml).
 

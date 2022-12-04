@@ -1,3 +1,27 @@
+MDS Study Schedule
+
+WEEK 1  - Nov 19
+- [ ] 573 + PDF
+- [ ] 561 + PDF
+- [ ] 513 + PDF
+- [ ] 522 GROUP
+- [ ] 522 INDIVIDUAL
+FINISH
+
+- [x] 573 + PDF
+- [x] 561 + PDF
+- [x] 513 + PDF
+- [ ] 522 GROUP
+- [ ] 522 INDIVIDUAL
+HAND IN
+
+WEEK 2  - Nov 26
+
+
+WEEK 3  - Nov 3
+
+
+WEEK 4  - Nov 10
 ---
 title: "Credibility Classification of Credit Card Clients"
 author: Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
@@ -5,7 +29,6 @@ date: "11/26/2022 (updated: `r Sys.Date()`)"
 output: 
   github_document:
     toc: TRUE
-    fig_caption: yes
 bibliography: references.bib
 editor_options: 
   markdown: 
@@ -19,7 +42,6 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 ```
-
 
 ## Summary
 
@@ -58,23 +80,22 @@ The data attributes range from client's gender, age, education, previous payment
 
 `Marital status` : 1 = married; 2 = single; 3 = others\
 
-`PAY_X` , the history of monthly payment tracked from April to September, 2005 : 
+`PAY_X` , the history of monthly payment tracked from April to September, 2005 :
 
-PAY_0 = repayment status in September, 2005; 
-PAY_2 = repayment status in August, 2005; 
-PAY_3 = repayment status in July, 2005; 
-PAY_4 = repayment status in June, 2005; 
-PAY_5 = the repayment status in May, 2005;
-PAY_6 = the repayment status in April, 2005 \
+PAY_0 = repayment status in September, 2005; \
+PAY_2 = repayment status in August, 2005; \
+PAY_3 = repayment status in July, 2005; \
+PAY_4 = repayment status in June, 2005; \
+PAY_5 = the repayment status in May, 2005; \
+PAY_6 = the repayment status in April, 2005\
 
-Scale for `PAY_X` : 
+Scale for `PAY_X` :
 
--2 for no payment required; 
--1 = pay duly; 
-1 = payment delay for one month; 
-2 = payment delay for two months;
-...
-9 = payment delay for nine months and above
+-2 for no payment required;\
+-1 = pay duly; \
+1 = payment delay for one month;\
+2 = payment delay for two months; \
+... 9 = payment delay for nine months and above
 
 #### Binary Features
 
@@ -86,23 +107,23 @@ Scale for `PAY_X` :
 
 `Age` : the age of the individual (years).\
 
-`BILL_AMTX` : the amount of bill statement (NT dollar).
+`BILL_AMTX` : the amount of bill statement (NT dollar).\
 
-BILL_AMT1 = amount of bill statement in September, 2005; 
-BILL_AMT2 = amount of bill statement in August, 2005; 
-BILL_AMT3 = amount of bill statement in July, 2005; 
-BILL_AMT4 = amount of bill statement in June, 2005; 
-BILL_AMT5 = amount of bill statement in May, 2005; 
-BILL_AMT6 = amount of bill statement in April, 2005 \
+BILL_AMT1 = amount of bill statement in September, 2005;\
+BILL_AMT2 = amount of bill statement in August, 2005;\
+BILL_AMT3 = amount of bill statement in July, 2005;\
+BILL_AMT4 = amount of bill statement in June, 2005;\
+BILL_AMT5 = amount of bill statement in May, 2005;\
+BILL_AMT6 = amount of bill statement in April, 2005\
 
-`PAY_AMTX` : Amount of previous payment (NT dollar)
+`PAY_AMTX` : Amount of previous payment (NT dollar)\
 
-PAY_AMT1 = amount paid in September, 2005; 
-PAY_AMT2 = amount paid in August, 2005; 
-PAY_AMT2 = amount paid in July, 2005; 
-PAY_AMT2 = amount paid in June, 2005; 
-PAY_AMT2 = amount paid in May, 2005; 
-PAY_AMT2 = amount paid in April, 2005 \ 
+PAY_AMT1 = amount paid in September, 2005;\
+PAY_AMT2 = amount paid in August, 2005;\
+PAY_AMT2 = amount paid in July, 2005;\
+PAY_AMT2 = amount paid in June, 2005;\
+PAY_AMT2 = amount paid in May, 2005;\
+PAY_AMT2 = amount paid in April, 2005  
 
 [Link to Source Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
@@ -126,14 +147,14 @@ We have categorical features such as marriage, education, and monthly payment hi
 Below is the distribution of our target class according to the various categories.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 1.** Distribution of Categorical Features"}
-knitr::include_graphics("../data/eda_results/categorical_result.png")
+knitr::include_graphics("../results/eda_results/categorical_result.png")
 ```
 
 There is one binary feature in our data set: sex of the client.
 There is a higher proportion of female clients who have defaulted in our dataset.
 
 ```{r out.width="75%", fig.align='center', fig.cap="**Figure 2.** Distribution of Binary Feature"}
-knitr::include_graphics("../data/eda_results/binary_result.png")
+knitr::include_graphics("../results/eda_results/binary_result.png")
 ```
 
 Numeric features include bill amounts, payment amounts, and age of the client.
@@ -141,14 +162,14 @@ We get an idea that the default ratio is not dependent on the months, however, w
 We also see that there is a slight increase in the default ratio in the middle to late age range of our clients.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 3.** Distribution of Numeric Feature"}
-knitr::include_graphics("../data/eda_results/numeric_result.png")
+knitr::include_graphics("../results/eda_results/numeric_result.png")
 ```
 
 Below is the correlation matrix for all of our features.
 We see a strong correlation between our target and payment history as well as the credit limit offered to the client.
 
 ```{r fig.align='center'}
-read.csv("../data/eda_results/corr.csv") %>%
+read.csv("../results/eda_results/corr.csv") %>%
   mutate_if(is.numeric, round, 2) %>%
   kable(caption = "Table 1. Correlation Matrix of all features") %>%
   kable_styling(full_width = F, font_size = 10) %>%
@@ -172,35 +193,40 @@ The following models were tested with default hyperparameters and compared:
 -   Random Forest Classifier
 
 From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier as 0.47.
-However, we chose to use the Logistic Regression Classifier instead so we are able to get a sense of whether a feature has a positive or negative impact on our prediction. 
+However, we chose to use the Logistic Regression Classifier instead so we are able to get a sense of whether a feature has a positive or negative impact on our prediction.
 
-We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamater `C` value as `0.438` and `class_weight = balanced`. Using our model with optimized hyperparameters, the f1 validation score returned was 0.479.
+We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamater `C` value as `0.438` and `class_weight = balanced`.
+Using our model with optimized hyperparameters, the f1 validation score returned was 0.479.
 
 ## Results
 
-We used our optimized Logistic Regression model on the test data of 6,000 clients. The f1 score on the test data was 0.467. Below are the regression coefficients for our features. 
+We used our optimized Logistic Regression model on the test data of 6,000 clients.
+The f1 score on the test data was 0.467.
+Below are the regression coefficients for our features.
 
-```{r}
-feat_table = read.csv("../data/results/feature_coefficient.csv") %>%
+```{r fig.align='center'}
+feat_table = read.csv("../results/model/feature_coefficient.csv") %>%
   select(c(Feature,Coefficient))
 
 kable(feat_table) %>%
   kable_classic_2(full_width = F)
 ```
-Our strongest positively correlated feature was `PAY_0`: the default history of the client. This is expected because the longer a client has delayed their payments as of September 2005, when the data was collected, the more likely they are to default. 
 
-`BILL_AMT3` and `BILL_AMT2` were also strong positive coefficients. The higher the statement amount in the previous months (July and August), the more likely the client will default. 
+Our strongest positively correlated feature was `PAY_0`: the default history of the client.
+This is expected because the longer a client has delayed their payments as of September 2005, when the data was collected, the more likely they are to default.
 
-The strongest negative coefficient was `BILL_AMT1` which is expected as the higher the amount due in the September statement, the higher the likely a client will default that same month. 
+`BILL_AMT3` and `BILL_AMT2` were also strong positive coefficients.
+The higher the statement amount in the previous months (July and August), the more likely the client will default.
 
-Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated variables for our model. This also makes sense as higher payments in recent months (August and September) will result in less likelihood of a client defaulting.
+The strongest negative coefficient was `BILL_AMT1` which is expected as the higher the amount due in the September statement, the higher the likely a client will default that same month.
 
-
+Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated variables for our model.
+This also makes sense as higher payments in recent months (August and September) will result in less likelihood of a client defaulting.
 
 Our model made 4,141 correct predictions for our clients, out of 6,000 (69%).
 
 ```{r out.width="50%", fig.align='center', fig.cap="**Figure 4.** Confusion Matrix"}
-knitr::include_graphics("../data/results/confusion_matrix.png")
+knitr::include_graphics("../results/model/confusion_matrix.png")
 ```
 
 We predicted 494 clients would not default and make their payment when in fact, they would not.

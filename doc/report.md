@@ -64,12 +64,12 @@ etc.
 
 #### Feature Descriptions
 
-#### Categorical Features
+##### Categorical Features
 
 `Education` : 1 = graduate school; 2 = university; 3 = high school; 4 =
-other  
+other
 
-`Marital status` : 1 = married; 2 = single; 3 = others  
+`Marital status` : 1 = married; 2 = single; 3 = others
 
 `PAY_X` , the history of monthly payment tracked from April to
 September, 2005 :
@@ -79,7 +79,7 @@ PAY_2 = repayment status in August, 2005;
 PAY_3 = repayment status in July, 2005;  
 PAY_4 = repayment status in June, 2005;  
 PAY_5 = the repayment status in May, 2005;  
-PAY_6 = the repayment status in April, 2005  
+PAY_6 = the repayment status in April, 2005
 
 Scale for `PAY_X` :
 
@@ -89,16 +89,16 @@ Scale for `PAY_X` :
 2 = payment delay for two months;  
 … 9 = payment delay for nine months and above
 
-#### Binary Features
+##### Binary Features
 
 `Sex` : 1 = male; 2 = female
 
-#### Numeric features
+##### Numeric features
 
 `LIMIT_BAL` : the amount of given credit (NT dollar), includes both the
-individual consumer credit and his/her family (supplementary) credit.  
+individual consumer credit and his/her family (supplementary) credit.
 
-`Age` : the age of the individual (years).  
+`Age` : the age of the individual (years).
 
 `BILL_AMTX` : the amount of bill statement (NT dollar).  
 
@@ -109,7 +109,7 @@ BILL_AMT4 = amount of bill statement in June, 2005;
 BILL_AMT5 = amount of bill statement in May, 2005;  
 BILL_AMT6 = amount of bill statement in April, 2005  
 
-`PAY_AMTX` : Amount of previous payment (NT dollar)  
+`PAY_AMTX` : Amount of previous payment (NT dollar)
 
 PAY_AMT1 = amount paid in September, 2005;  
 PAY_AMT2 = amount paid in August, 2005;  
@@ -2593,6 +2593,8 @@ model, such as income, size of the household, and amount of debt. With
 more relevant features for our model to fit to, the data and our
 prediction accuracy will improve.
 
+## References
+
 This report was constructed using Rmarkdown (Allaire et al. 2021),
 ReadR(Wickham, Hester, and Bryan 2022), Knitr (Xie 2022), kableExtra
 (Zhu 2021), and tidyverse (Wickham et al. 2019) in R (R Core Team 2019)
@@ -2600,8 +2602,6 @@ and the following python (Python 2021) packages: pandas(Snider and Swedo
 2004), numpy(Bressert 2012), scikit-learn(Pedregosa et al. 2011),
 altair(VanderPlas et al. 2018), matplotlib (Bisong 2019), and
 uci_ml_data_set (n.d.).
-
-## References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 

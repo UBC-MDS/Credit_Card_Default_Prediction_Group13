@@ -1,18 +1,20 @@
 ---
 title: "Credibility Classification of Credit Card Clients"
-author: Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
-date: "11/26/2022 (updated: `r Sys.Date()`)" 
-output: 
+author: "Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon"
+date: '11/26/2022 (updated: `r Sys.Date()`)'
+output:
   github_document:
-    toc: TRUE
+    toc: yes
   html_document:
-    toc: TRUE
+    toc: yes
+    df_print: paged
 bibliography: references.bib
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: sentence
-always_allow_html: true
+always_allow_html: yes
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
@@ -51,38 +53,38 @@ The data attributes range from client's gender, age, education, previous payment
 
 #### Feature Descriptions
 
-#### Categorical Features
+##### Categorical Features
 
-`Education` : 1 = graduate school; 2 = university; 3 = high school; 4 = other\
+`Education` : 1 = graduate school; 2 = university; 3 = high school; 4 = other
 
-`Marital status` : 1 = married; 2 = single; 3 = others\
+`Marital status` : 1 = married; 2 = single; 3 = others
 
 `PAY_X` , the history of monthly payment tracked from April to September, 2005 :
 
-PAY_0 = repayment status in September, 2005; \
-PAY_2 = repayment status in August, 2005; \
-PAY_3 = repayment status in July, 2005; \
-PAY_4 = repayment status in June, 2005; \
-PAY_5 = the repayment status in May, 2005; \
-PAY_6 = the repayment status in April, 2005\
+PAY_0 = repayment status in September, 2005;\
+PAY_2 = repayment status in August, 2005;\
+PAY_3 = repayment status in July, 2005;\
+PAY_4 = repayment status in June, 2005;\
+PAY_5 = the repayment status in May, 2005;\
+PAY_6 = the repayment status in April, 2005
 
 Scale for `PAY_X` :
 
 -2 for no payment required;\
--1 = pay duly; \
+-1 = pay duly;\
 1 = payment delay for one month;\
-2 = payment delay for two months; \
+2 = payment delay for two months;\
 ... 9 = payment delay for nine months and above
 
-#### Binary Features
+##### Binary Features
 
 `Sex` : 1 = male; 2 = female
 
-#### Numeric features
+##### Numeric features
 
-`LIMIT_BAL` : the amount of given credit (NT dollar), includes both the individual consumer credit and his/her family (supplementary) credit.\
+`LIMIT_BAL` : the amount of given credit (NT dollar), includes both the individual consumer credit and his/her family (supplementary) credit.
 
-`Age` : the age of the individual (years).\
+`Age` : the age of the individual (years).
 
 `BILL_AMTX` : the amount of bill statement (NT dollar).\
 
@@ -93,7 +95,7 @@ BILL_AMT4 = amount of bill statement in June, 2005;\
 BILL_AMT5 = amount of bill statement in May, 2005;\
 BILL_AMT6 = amount of bill statement in April, 2005\
 
-`PAY_AMTX` : Amount of previous payment (NT dollar)\
+`PAY_AMTX` : Amount of previous payment (NT dollar)
 
 PAY_AMT1 = amount paid in September, 2005;\
 PAY_AMT2 = amount paid in August, 2005;\
@@ -224,6 +226,6 @@ Proper data labelling needs to be done to account for this ambiguous data.
 Lastly, more useful features would improve this model, such as income, size of the household, and amount of debt.
 With more relevant features for our model to fit to, the data and our prediction accuracy will improve.
 
-This report was constructed using Rmarkdown [@Rrmarkdown], ReadR[@readr], Knitr [@knitr], kableExtra [@kableextra], and tidyverse [@tidy] in R [@R] and the following python [@python] packages: pandas[@pandas], numpy[@numpy], scikit-learn[@scikit-learn], altair[@altair], matplotlib [@matplotlib], and uci_ml_data_set [@uci_ml_data_set].
-
 ## References
+
+This report was constructed using Rmarkdown [@Rrmarkdown], ReadR[@readr], Knitr [@knitr], kableExtra [@kableextra], and tidyverse [@tidy] in R [@R] and the following python [@python] packages: pandas[@pandas], numpy[@numpy], scikit-learn[@scikit-learn], altair[@altair], matplotlib [@matplotlib], and uci_ml_data_set [@uci_ml_data_set].

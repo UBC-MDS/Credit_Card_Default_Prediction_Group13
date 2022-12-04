@@ -37,8 +37,8 @@ from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import classification_report
 from scipy.stats import loguniform
 
-
 def perform_ml_analysis(train_data, test_data, out_path):
+# perform ml analysis for different models and pick best model
     if not os.path.exists(out_path):
         os.makedirs(out_path)
 

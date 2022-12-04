@@ -114,7 +114,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
         "PAY_6",
         "EDUCATION",
     ]
-    
+
     scores_output={}
     scores_output["target_0"]=train_df["default payment next month"].value_counts()[0]
     scores_output["target_1"]=train_df["default payment next month"].value_counts()[1]
@@ -335,7 +335,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     print(cm.confusion_matrix)
     plt.savefig(out_path + "confusion_matrix.png")
     plt.clf()
-    
+
     scores_output['TN'] = cm.confusion_matrix[0,0]
     scores_output['FP'] = cm.confusion_matrix[0,1]
     scores_output['FN'] = cm.confusion_matrix[1,0]
@@ -408,7 +408,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
     # Finally, check the f1_score of the test data with our optimized model.
     test_f1_score = f1_score(y_test, random_search.best_estimator_.predict(X_test))
     print(f"The f1_score of the test data is", round(test_f1_score, 3))
-    
+
     scores_output['model_f1_score'] = test_f1_score
     scores_output = pd.Series(scores_output)
     scores_output.to_csv(out_path + "model_score.csv")
@@ -422,4 +422,17 @@ if __name__ == "__main__":
     train_data = arguments["--traindata"]  # load 1 dataset at a time
     test_data = arguments["--testdata"]  # load 1 dataset at a time
     out_path = arguments["--output"][0]
+
+    assert train_data.endswith('.csv')
+    assert test_data.endswith('.csv')
+    assert 'results' in out_path
+
     perform_ml_analysis(train_data, test_data, out_path)
+
+    # Tests that the files are generated as expected
+    assert os.path.exists('./results/model/confusion_matrix.png')
+    assert os.path.exists('./results/model/feature_coefficient.csv')
+    assert os.path.exists('./results/model/model_score.csv')
+    assert os.path.exists('./results/model/model_selection.csv')
+    assert os.path.exists('./results/model/precision_recall.png')
+    assert os.path.exists('./results/model/roc.png')

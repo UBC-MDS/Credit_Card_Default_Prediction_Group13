@@ -33,5 +33,15 @@ if __name__ == '__main__':
     data_url = arguments['--url'] # Download 1 dataset at a time
     local_path = arguments['--path'][0]
     ext_name = data_url.split('.')[-1]
+
+    # Unit tests
+    assert ext_name == 'xls'
+    assert 'https' in data_url
+    assert 'data' in local_path and 'raw' in local_path
+
     download_data(data_url, to=local_path, ext_name=ext_name)
+
+    # test if the file is stored properly
+    assert os.path.exists('./data/raw/raw_data.xls')
+
     print("-- Data downloaded to: {}".format(local_path))

@@ -156,4 +156,15 @@ if __name__ == '__main__':
 
     train_data_path = arguments['--traindata'] # Download 1 dataset at a time
     out_path = arguments['--output'][0]
+
+    # Tests arguments
+    assert train_data_path.endswith('.csv')
+    assert 'eda_results' in out_path
+
     perform_eda(train_data_path, out_path)
+
+    # Tests that the files are generated as expected
+    assert os.path.exists('./results/eda_results/binary_result.png')
+    assert os.path.exists('./results/eda_results/categorical_result.png')
+    assert os.path.exists('./results/eda_results/numeric_result.png')
+    assert os.path.exists('./results/eda_results/corr.csv')

@@ -88,7 +88,7 @@ conda deactivate
 
 ### With Makefile
 
-You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/tree/Makefile_report_hw#dependencies). 
+You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](##dependencies). 
 
 Then, you can run the command below using terminal in the root directory of this project to automatically run the full analysis and generate the final report. 
 

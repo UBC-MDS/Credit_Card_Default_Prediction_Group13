@@ -126,14 +126,14 @@ We have categorical features such as marriage, education, and monthly payment hi
 Below is the distribution of our target class according to the various categories.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 1.** Distribution of Categorical Features"}
-knitr::include_graphics("../data/eda_results/categorical_result.png")
+knitr::include_graphics("../results/eda_results/categorical_result.png")
 ```
 
 There is one binary feature in our data set: sex of the client.
 There is a higher proportion of female clients who have defaulted in our dataset.
 
 ```{r out.width="75%", fig.align='center', fig.cap="**Figure 2.** Distribution of Binary Feature"}
-knitr::include_graphics("../data/eda_results/binary_result.png")
+knitr::include_graphics("../results/eda_results/binary_result.png")
 ```
 
 Numeric features include bill amounts, payment amounts, and age of the client.
@@ -141,14 +141,14 @@ We get an idea that the default ratio is not dependent on the months, however, w
 We also see that there is a slight increase in the default ratio in the middle to late age range of our clients.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 3.** Distribution of Numeric Feature"}
-knitr::include_graphics("../data/eda_results/numeric_result.png")
+knitr::include_graphics("../results/eda_results/numeric_result.png")
 ```
 
 Below is the correlation matrix for all of our features.
 We see a strong correlation between our target and payment history as well as the credit limit offered to the client.
 
 ```{r fig.align='center'}
-read.csv("../data/eda_results/corr.csv") %>%
+read.csv("../results/eda_results/corr.csv") %>%
   mutate_if(is.numeric, round, 2) %>%
   kable(caption = "Table 1. Correlation Matrix of all features") %>%
   kable_styling(full_width = F, font_size = 10) %>%
@@ -181,7 +181,7 @@ We then performed hyperparameter optimization for the Logistic Regression model 
 We used our optimized Logistic Regression model on the test data of 6,000 clients. The f1 score on the test data was 0.467. Below are the regression coefficients for our features. 
 
 ```{r}
-feat_table = read.csv("../data/results/feature_coefficient.csv") %>%
+feat_table = read.csv("../results/results/feature_coefficient.csv") %>%
   select(c(Feature,Coefficient))
 
 kable(feat_table) %>%
@@ -200,7 +200,7 @@ Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated variables for o
 Our model made 4,141 correct predictions for our clients, out of 6,000 (69%).
 
 ```{r out.width="50%", fig.align='center', fig.cap="**Figure 4.** Confusion Matrix"}
-knitr::include_graphics("../data/results/confusion_matrix.png")
+knitr::include_graphics("../results/results/confusion_matrix.png")
 ```
 
 We predicted 494 clients would not default and make their payment when in fact, they would not.

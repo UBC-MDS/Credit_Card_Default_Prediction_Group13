@@ -1,27 +1,3 @@
-MDS Study Schedule
-
-WEEK 1  - Nov 19
-- [ ] 573 + PDF
-- [ ] 561 + PDF
-- [ ] 513 + PDF
-- [ ] 522 GROUP
-- [ ] 522 INDIVIDUAL
-FINISH
-
-- [x] 573 + PDF
-- [x] 561 + PDF
-- [x] 513 + PDF
-- [ ] 522 GROUP
-- [ ] 522 INDIVIDUAL
-HAND IN
-
-WEEK 2  - Nov 26
-
-
-WEEK 3  - Nov 3
-
-
-WEEK 4  - Nov 10
 ---
 title: "Credibility Classification of Credit Card Clients"
 author: Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
@@ -29,13 +5,14 @@ date: "11/26/2022 (updated: `r Sys.Date()`)"
 output: 
   github_document:
     toc: TRUE
+  html_document:
+    toc: TRUE
 bibliography: references.bib
 editor_options: 
   markdown: 
     wrap: sentence
 always_allow_html: true
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
@@ -250,3 +227,4 @@ With more relevant features for our model to fit to, the data and our prediction
 This report was constructed using Rmarkdown [@Rrmarkdown], ReadR[@readr], Knitr [@knitr], kableExtra [@kableextra], and tidyverse [@tidy] in R [@R] and the following python [@python] packages: pandas[@pandas], numpy[@numpy], scikit-learn[@scikit-learn], altair[@altair], matplotlib [@matplotlib], and uci_ml_data_set [@uci_ml_data_set].
 
 ## References
+

@@ -27,13 +27,13 @@ information (gender, education, age, history of past payment etc. ).
 
 Our final classifier using the Logistic Regression model did not perform
 as well as we hoped on our unseen test data, with a final f1 score of
-0.471. Of the 6,000 clients in our test data, our model correctly
-predicted the default status of 4,141 clients correctly. There were
-1,129 incorrect predictions, either predicting a customer will default
-on their payment when they have not or a customer will not default when
-they have. Incorrect predictions of either type can be costly for
-financial institutions and thus we will continue to study our data and
-improve our model before it is put into production.
+0.47. Of the 6000 clients in our test data, our model correctly
+predicted the default status of 4141 clients correctly. There were 1859
+incorrect predictions, either a customer will default on their payment
+when they have not or a customer will not default when they have.
+Incorrect predictions of either type can be costly for financial
+institutions and thus we will continue to study our data and improve our
+model before it is put into production.
 
 ## Introduction
 
@@ -116,7 +116,7 @@ PAY_AMT2 = amount paid in August, 2005;
 PAY_AMT2 = amount paid in July, 2005;  
 PAY_AMT2 = amount paid in June, 2005;  
 PAY_AMT2 = amount paid in May, 2005;  
-PAY_AMT2 = amount paid in April, 2005  
+PAY_AMT2 = amount paid in April, 2005 
 
 [Link to Source
 Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
@@ -126,8 +126,7 @@ Data](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 ### EDA
 
 Our data has been split into training and testing splits, with 80% of
-the data (30,000 observations) in the training set and 20% (6,000
-observations) in the test data.
+the data (24000) in the training set and 20% (6000) in the test data.
 
 There are no missing values in any rows or columns.
 
@@ -141,8 +140,8 @@ categorical features, and 14 numerical features. Our target column is
 the client paying their bill in the next month and class 1 representing
 a client choosing to default on their bill in the next month.
 
-There is class imbalance in our data, with 77.9% of examples as class 1
-and 22.1% as class 0.
+There is class imbalance in our data, with 77.8% of examples as class 0
+and 22.2% as class 1.
 
 We have categorical features such as marriage, education, and monthly
 payment history. Below is the distribution of our target class according
@@ -2302,20 +2301,20 @@ compared:
 - Random Forest Classifier
 
 From the cross validation scores for each of these models, the mean
-validation score returned highest for the Random Forest Classifier as
-0.47. However, we chose to use the Logistic Regression Classifier
-instead so we are able to get a sense of whether a feature has a
-positive or negative impact on our prediction.
+validation score returned highest for the Random Forest Classifier.
+However, we chose to use the Logistic Regression Classifier instead so
+we are able to get a sense of whether a feature has a positive or
+negative impact on our prediction.
 
 We then performed hyperparameter optimization for the Logistic
-Regression model to find our optimum hyperparamater `C` value as `0.438`
-and `class_weight = balanced`. Using our model with optimized
-hyperparameters, the f1 validation score returned was 0.479.
+Regression model to find our optimum hyperparamater `C` value as 0.438
+and balanced. Using our model with optimized hyperparameters, the f1
+validation score returned was 0.48.
 
 ## Results
 
-We used our optimized Logistic Regression model on the test data of
-6,000 clients. The f1 score on the test data was 0.467. Below are the
+We used our optimized Logistic Regression model on the test data of 6000
+clients. The f1 score on the test data was 0.47. Below are the
 regression coefficients for our features.
 
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -2554,7 +2553,7 @@ variables for our model. This also makes sense as higher payments in
 recent months (August and September) will result in less likelihood of a
 client defaulting.
 
-Our model made 4,141 correct predictions for our clients, out of 6,000
+Our model made 4141 correct predictions for our clients, out of 6000
 (69%).
 
 <div class="figure" style="text-align: center">
@@ -2575,7 +2574,7 @@ will not. This is costly because a false labeling and a possible
 unjustified interest rate increase can lead to client dissatisfaction.
 
 Our model did not perform as well as we hoped with an f1 test score of
-0.471. The data we started with contained a lot of noise and non-linear
+0.47. The data we started with contained a lot of noise and non-linear
 relations that our model was not able to fit well to and further
 improvements will need to be made before it is put into production.
 
@@ -2587,11 +2586,13 @@ selection may be beneficial. We may be able to get rid of some features
 that are noisy and have low correlation to our target value. As well, as
 mentioned earlier, there were features that contained ambiguous
 categories and our model is not capturing the data that was sorted into
-“other” categories. Proper data labelling needs to be done to account
-for this ambiguous data. Lastly, more useful features would improve this
-model, such as income, size of the household, and amount of debt. With
-more relevant features for our model to fit to, the data and our
-prediction accuracy will improve.
+“other” categories.
+
+Proper data labelling needs to be done to account for this ambiguous
+data. Lastly, more useful features would improve this model, such as
+income, size of the household, and amount of debt. With more relevant
+features for our model to fit to, the data and our prediction accuracy
+will improve.
 
 ## References
 

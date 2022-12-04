@@ -1,11 +1,11 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_eda.py [TRAINDATA] [OUTPUTFOLDER] ...
+"""Usage: data_eda.py --traindata=<traindata> --output=<output> ...
 
 Arguments:
-  TRAINDATA        path of the raw training data
-  OUTPUTFOLDER     folder that stores the generated plots
+  --traindata=<traindata>        path of the raw training data
+  --output=<output>              folder that stores the generated plots
 
 
 """
@@ -154,6 +154,6 @@ def perform_eda(train_data_path, out_folder):
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
-    train_data_path = arguments['TRAINDATA'] # Download 1 dataset at a time
-    out_path = arguments['OUTPUTFOLDER'][0]
+    train_data_path = arguments['--traindata'] # Download 1 dataset at a time
+    out_path = arguments['--output'][0]
     perform_eda(train_data_path, out_path)

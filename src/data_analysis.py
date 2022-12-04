@@ -399,7 +399,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
 
 
 # Make sure you call this script in the repo's root path
-# Example: python3 src/data_analysis.py ./data/processed/train_cleaned.csv ./data/processed/test_cleaned.csv ./data/results/
+# Example: python3 src/data_analysis.py ./data/processed/train_cleaned.csv ./data/processed/test_cleaned.csv ./results/
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 

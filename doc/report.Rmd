@@ -110,7 +110,7 @@ PAY_AMT2 = amount paid in April, 2005  
 
 ### EDA
 
-Our data has been split into training and testing splits, with 80% of the data (30,000 observations) in the training set and 20% (6,000 observations) in the test data.
+Our data has been split into training and testing splits, with 80% of the data (24,000 observations) in the training set and 20% (6,000 observations) in the test data.
 
 There are no missing values in any rows or columns.
 
@@ -120,7 +120,7 @@ We cleaned up the data so the categories were more meaningful.
 We have 24 usable features in total, with one binary feature, eight categorical features, and 14 numerical features.
 Our target column is `default_payment_next_month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill in the next month.
 
-There is class imbalance in our data, with 77.9% of examples as class 1 and 22.1% as class 0.
+There is class imbalance in our data, with 77.9% of examples as class 0 and 22.1% as class 1.
 
 We have categorical features such as marriage, education, and monthly payment history.
 Below is the distribution of our target class according to the various categories.

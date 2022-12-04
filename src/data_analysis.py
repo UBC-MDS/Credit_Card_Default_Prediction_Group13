@@ -1,12 +1,12 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_analysis.py [TRAINDATA] [TESTDATA] [OUTPUTFOLDER] ...
+"""Usage: data_analysis.py --traindata=<traindata> --testdata=<testdata> --output=<output> ...
 
 Arguments:
-  TRAINDATA        path of the training data
-  TESTDATA         path of the testing data
-  OUTPUTFOLDER     folder that stores the generated plots
+  --traindata=<traindata>        path of the training data
+  --testdata=<testdata>         path of the testing data
+  --output=<output>     folder that stores the generated plots
 
 
 """
@@ -403,7 +403,7 @@ def perform_ml_analysis(train_data, test_data, out_path):
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 
-    train_data = arguments["TRAINDATA"]  # load 1 dataset at a time
-    test_data = arguments["TESTDATA"]  # load 1 dataset at a time
-    out_path = arguments["OUTPUTFOLDER"][0]
+    train_data = arguments["--traindata"]  # load 1 dataset at a time
+    test_data = arguments["--testdata"]  # load 1 dataset at a time
+    out_path = arguments["--output"][0]
     perform_ml_analysis(train_data, test_data, out_path)

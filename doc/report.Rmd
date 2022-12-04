@@ -5,7 +5,6 @@ date: "11/26/2022 (updated: `r Sys.Date()`)"
 output: 
   github_document:
     toc: TRUE
-    fig_caption: yes
 bibliography: references.bib
 editor_options: 
   markdown: 

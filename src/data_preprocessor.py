@@ -1,11 +1,11 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_preprocessor.py [INPUTPATH] [OUTPUTFOLDER] ...
+"""Usage: data_preprocessor.py --input=<input> --output=<output> ...
 
 Arguments:
-  INPUTPATH         path to raw data file
-  OUTPUTFOLDER      folder to save the preprocessed and split dataset (as train.csv and test.csv)
+  --input=<input>        path to raw data file
+  --output=<output>      folder to save the preprocessed and split dataset (as train.csv and test.csv)
 
 
 """
@@ -52,8 +52,8 @@ def preprocess_data(raw_data_path, out_folder):
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
-    input_path = arguments['INPUTPATH'] # Points to the raw dataset
-    out_folder = arguments['OUTPUTFOLDER'][0]
+    input_path = arguments['--input'] # Points to the raw dataset
+    out_folder = arguments['--output'][0]
 
     preprocess_data(input_path, out_folder)
     print("-- Cleaned data available at: {}".format(out_folder))

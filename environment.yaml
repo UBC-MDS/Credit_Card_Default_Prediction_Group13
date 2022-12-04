@@ -3,26 +3,26 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - conda
-  - python=3.10
-  - python.app
-  - jupyterlab
-  - jupyterlab-spellchecker
-  - pandas
-  - jupytext
-  - memory_profiler
-  - jupyterlab-git
-  - black
-  - jupyterlab_code_formatter
-  - flake8
-  - openpyxl
-  - wget
-  - rasterio=1.3.1
-  - nb_conda_kernels
-  - docopt
-  - xlrd
-  - ipywidgets
-  - altair
-  - altair_data_server
-  - altair_saver
-prefix: /opt/miniconda3
+- altair==4.2.0
+- vl-convert-python==0.5.0
+- docopt=0.6.2
+- numpy=1.23.3
+- ipykernel
+- scikit-learn==1.1.2
+- pandas=1.4.4
+- requests>=2.24.0
+- scikit-learn=1.1.2
+- scipy=1.9.2
+- ipython>=7.15
+- altair_saver
+- selenium<4.3.0
+- matplotlib>=3.5.3
+- pandas-profiling
+- pandoc
+- pip
+- pip:
+  - joblib==1.1.0
+  - psutil>=5.7.2
+  - openpyxl>=3.0.0
+  - xlrd>=2.0.1
+  - xlwt>=1.3.0

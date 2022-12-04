@@ -1,11 +1,11 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_downloader.py [LINK] [PATH] ...
+"""Usage: src/data_downloader.py --url=<url> --path=<path> ...
 
 Arguments:
-  LINK        optional input file
-  PATH        local file path
+  --url=<url>        optional input file
+  --path=<path>        local file path
 
 
 """
@@ -16,7 +16,7 @@ import requests, os
 from sklearn.model_selection import train_test_split
 
 # Downloads raw data from the Internet
-def download_data(url, to='./data/', ext_name='csv'):  
+def download_data(url, to='./data/', ext_name='csv'):
     if not (os.path.exists(to)):
         os.makedirs(to)
 
@@ -30,8 +30,8 @@ def download_data(url, to='./data/', ext_name='csv'):
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
-    data_url = arguments['LINK'] # Download 1 dataset at a time
-    local_path = arguments['PATH'][0]
+    data_url = arguments['--url'] # Download 1 dataset at a time
+    local_path = arguments['--path'][0]
     ext_name = data_url.split('.')[-1]
     download_data(data_url, to=local_path, ext_name=ext_name)
     print("-- Data downloaded to: {}".format(local_path))

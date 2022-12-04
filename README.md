@@ -12,6 +12,8 @@ In the field of risk management, one of the most common problems is default pred
 
 **Given a credit card holder's basic personal information (gender, education, age, history of past payment etc.), will the person default on next month's payment?**
 
+Specifically, a credit default is defined as the behaviour when someone who borrowed the money stops making the required payments. In the dataset 1 indicates that the person has committed a credit default (fails to pay) while 0 indicates the person is paying the debt as required. 
+
 The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
 
 ## Research Question
@@ -30,8 +32,7 @@ We plan to explore a wide range of algorithms (both naive and advanced), includi
 - Ensemble Methods (e.g. Random Forest)
 - KNN (both unweighted and weighted)
 
-Most of our code for data processing and model building and will be in Python 3. For EDA and data visualization we plan to use both R and Python 3.
-
+Most of our code for data processing and model building and will be in Python 3. For EDA and data visualization we plan to use both R and Python 3. After empirical analysis, we choose the Logistic Regression model for our project because it outperforms the rest of other models and its features are easily interpretable. 
 
 ### Exploratory Data Analysis
 

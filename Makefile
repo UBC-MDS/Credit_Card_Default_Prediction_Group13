@@ -40,7 +40,6 @@ results/model/confusion_matrix.png results/model/feature_coefficient.csv results
 # Generate the report using an automated R markdown file. The Rmd file loads the previously 
 # generated figures and tables, and presents them in the final file generated. 
 doc/report.md doc/report.html: doc/report.Rmd doc/references.bib results/eda_results/categorical_result.png results/eda_results/binary_result.png results/eda_results/numeric_result.png results/model/confusion_matrix.png 
-
 	Rscript -e "rmarkdown::render('doc/report.Rmd')"
 
 # Clean data and report files.

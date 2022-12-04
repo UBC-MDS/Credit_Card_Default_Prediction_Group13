@@ -109,11 +109,20 @@ The EDA can be performed as:
 python3 src/data_eda.py data/processed/train_raw.csv data/eda_results/
 ```
 
-And finally, the model building and predictive analysis can be done by running the following code in the terminal:
+And finally, the model building, model scoring, and predictive analysis can be done by running the following code in the terminal:
 
 ```
 python3 src/data_analysis.py data/processed/train_cleaned.csv data/processed/test_cleaned.csv data/results
 ```
+
+To render the final report:
+
+```
+Rscript -e "rmarkdown::render('doc/report.Rmd')"
+```
+
+* Note about the usage of python3 *
+Python 2 is no longer in use since 2020, and because Python 3 and Python 2 do not share the exactly same language syntax, many popular packages are developed in Python 3 instead of Python 2. Hence in this project, please use Python3 so the dependent packages can be properly run.
 
 ## Report
 

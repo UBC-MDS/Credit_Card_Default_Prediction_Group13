@@ -1,3 +1,6 @@
+# authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
+# date: 2022-11-24
+
 """Usage: data_preprocessor.py [INPUTPATH] [OUTPUTFOLDER] ...
 
 Arguments:

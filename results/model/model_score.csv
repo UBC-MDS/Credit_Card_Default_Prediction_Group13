@@ -1,0 +1,11 @@
+,0
+target_0,18684
+target_1,5316
+logisticregression__C,0.4380695517692794
+logisticregression__class_weight,balanced
+best_model_f1_score,0.47862424422835803
+TN,3315
+FP,1365
+FN,494
+TP,826
+model_f1_score,0.47052121902591854

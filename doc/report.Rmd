@@ -183,10 +183,10 @@ Below are the regression coefficients for our features.
 
 ```{r fig.align='center'}
 feat_table = read.csv("../results/model/feature_coefficient.csv") %>%
-  select(c(Feature,Coefficient))
+  select(c(Feature,Coefficient)) 
 
-kable(feat_table) %>%
-  kable_classic_2(full_width = F)
+kable(feat_table, caption = "Table 2. Feature Coefficients") %>%
+  kable_classic_2(full_width = F) 
 ```
 
 Our strongest positively correlated feature was `PAY_0`: the default history of the client.
@@ -227,4 +227,3 @@ With more relevant features for our model to fit to, the data and our prediction
 This report was constructed using Rmarkdown [@Rrmarkdown], ReadR[@readr], Knitr [@knitr], kableExtra [@kableextra], and tidyverse [@tidy] in R [@R] and the following python [@python] packages: pandas[@pandas], numpy[@numpy], scikit-learn[@scikit-learn], altair[@altair], matplotlib [@matplotlib], and uci_ml_data_set [@uci_ml_data_set].
 
 ## References
-

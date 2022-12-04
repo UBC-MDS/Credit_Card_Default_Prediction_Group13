@@ -2319,6 +2319,9 @@ We used our optimized Logistic Regression model on the test data of
 regression coefficients for our features.
 
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Table 2. Feature Coefficients
+</caption>
 <thead>
 <tr>
 <th style="text-align:left;">

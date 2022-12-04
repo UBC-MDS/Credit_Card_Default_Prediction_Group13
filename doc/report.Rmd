@@ -154,7 +154,7 @@ read.csv("../data/eda_results/corr.csv") %>%
   scroll_box(width = "100%", height = "200px")
 ```
 
-# Predictive Model
+## Predictive Model
 
 We are interested in finding clients who are likely to default on their next payment but falsely predicting a client will default can be costly in terms of customer loyalty.
 
@@ -174,7 +174,7 @@ However, we chose to use the Logistic Regression Classifier instead so we are ab
 
 We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamater `C` value as `0.438` and `class_weight = balanced`. Using our model with optimized hyperparameters, the f1 validation score returned was 0.479.
 
-# Results
+## Results
 
 We used our optimized Logistic Regression model on the test data of 6,000 clients. The f1 score on the test data was 0.467. Below are the regression coefficients for our features. 
 
@@ -209,7 +209,7 @@ This is costly because a false labeling and a possible unjustified interest rate
 Our model did not perform as well as we hoped with an f1 test score of 0.471.
 The data we started with contained a lot of noise and non-linear relations that our model was not able to fit well to and further improvements will need to be made before it is put into production.
 
-# Further Improvements
+## Further Improvements
 
 Several things could be done to further improve this model.
 First of all, further optimization through feature engineering and feature selection may be beneficial.
@@ -221,4 +221,4 @@ With more relevant features for our model to fit to, the data and our prediction
 
 This report was constructed using Rmarkdown [@Rrmarkdown], ReadR[@readr], Knitr [@knitr], kableExtra [@kableextra], and tidyverse [@tidy] in R [@R] and the following python [@python] packages: pandas[@pandas], numpy[@numpy], scikit-learn[@scikit-learn], altair[@altair], matplotlib [@matplotlib], and uci_ml_data_set [@uci_ml_data_set].
 
-# References
+## References

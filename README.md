@@ -87,6 +87,12 @@ conda deactivate
 
 ## Usage
 
+### (Required) Cloning this repository
+
+Clone this Github repo:
+```
+git clone https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13.git
+```
 ### With Makefile
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13#dependencies). 

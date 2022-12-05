@@ -7,6 +7,8 @@
 - Qurat-ul-Ain Azim
 - Renee Kwon
 
+A data analysis project titled 'Credibility Classification of Credit Card Clients' for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia. The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
+
 ## About
 In the field of risk management, one of the most common problems is default prediction. This allows companies to predict the credibility of each person, analyze the risk level and optimize decisions for better business economics. In this project, the main question we are asking is:
 
@@ -14,30 +16,23 @@ In the field of risk management, one of the most common problems is default pred
 
 Specifically, a credit default is defined as the behaviour when someone who borrowed the money stops making the required payments. In the dataset 1 indicates that the person has committed a credit default (fails to pay) while 0 indicates the person is paying the debt as required. 
 
-The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
-
 ## Research Question
 Through this project, we aim to answer the question: Which attributes are most important when we use machine learning models to predict the default? Specifically we would like to know if the `weight` of attributes would change when we employ different models. Answering this question is, from our perspective, of great importance because it allows to understand what attributes relate to credibility the most. We would also aim to a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
 
-### Data Summary
+## Data Summary
 We use a dataset hosted by the UCI machine learning repository (1). Originally it is collected by researchers from Chung Hua University and Tamkang University (2). As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
 
-### Data Analysis Plan
-Building machine learning models and score the performance of each model would be our major method to approach the dataset. Specifically to study the influence of each attribute, we will look into the models based on their performance and order the importance of attributes with weights.
+## Data Analysis
+Our preliminary EDA looked for missing values and for unclean data. We then studied and ploted the distributions of all the meaningful features. We also performed correlation analysis to examine if any feature had strong correlations with the target. You can read more about EDA in our final report [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
 
-We plan to explore a wide range of algorithms (both naive and advanced), including:
+We then proceeded to build several machine learning models:
 - Support Vector Machine
 - Logistic Regression
 - Decision Tree
 - Ensemble Methods (e.g. Random Forest)
 - KNN (both unweighted and weighted)
 
-Most of our code for data processing and model building and will be in Python 3. For EDA and data visualization we plan to use both R and Python 3. After empirical analysis, we choose the Logistic Regression model for our project because it outperforms the rest of other models and its features are easily interpretable. 
-
-### Exploratory Data Analysis
-
-Our preliminary EDA includes looking for naay. missing values and for unclean data. We then study and plot the distributions of all the numeric type features for our analysis. Further analysis involves looking for any correlated features. We further use the pandas profiling package to report in depth results for the analysis.
-
+We scored their performance based on the f1 score, since we are interested in reducing both the false positives and false negatives. After empirical analysis, we choose the Logistic Regression Classifier model for our final analysis because it outperforms the rest of other models and its features are easily interpretable. 
 
 ## Dependencies
 

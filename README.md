@@ -68,19 +68,19 @@ And R, specifically we use RStudio of version:
 
 The complete list of packages used can be found in the [environment file](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/main/environment.yaml).
 
-The steps to using the environment are given below:
+For easy installation of the environment, please follow the steps below to:
 
-Creating an environment
+Create an conda environment
 ```
 conda env create --file environment.yaml
 ```
 
-Activate the environment 
+Activate the conda environment 
 ```
 conda activate credit_default_env
 ```
 
-Deactivate the environment 
+Deactivate the conda environment 
 ```
 conda deactivate
 ```

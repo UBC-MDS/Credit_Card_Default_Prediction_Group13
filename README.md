@@ -7,7 +7,7 @@
 - Qurat-ul-Ain Azim
 - Renee Kwon
 
-A data analysis project titled 'Credibility Classification of Credit Card Clients' for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia. The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
+A data analysis project titled 'Credibility Classification of Credit Card Clients' for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia. The report of the analysis can be found [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/main/doc/report.md).
 
 ## About
 In the field of risk management, one of the most common problems is default prediction. This allows companies to predict the credibility of each person, analyze the risk level and optimize decisions for better business economics. In this project, the main question we are asking is:
@@ -23,7 +23,7 @@ Through this project, we aim to answer the question: Which attributes are most i
 We use a dataset hosted by the UCI machine learning repository (1). Originally it is collected by researchers from Chung Hua University and Tamkang University (2). As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset. The dataset consists of 30000 instances, with each consists of 23 attributes and a target. The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use. The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
 
 ## Data Analysis
-Our preliminary EDA looked for missing values and for unclean data. We then studied and ploted the distributions of all the meaningful features. We also performed correlation analysis to examine if any feature had strong correlations with the target. You can read more about EDA in our final report [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/Makefile_report_hw/doc/report.md).
+Our preliminary EDA looked for missing values and for unclean data. We then studied and ploted the distributions of all the meaningful features. We also performed correlation analysis to examine if any feature had strong correlations with the target. You can read more about EDA in our final report [here](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13/blob/main/doc/report.md).
 
 We then proceeded to build several machine learning models:
 - Support Vector Machine

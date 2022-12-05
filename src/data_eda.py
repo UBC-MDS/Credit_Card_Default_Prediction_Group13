@@ -1,7 +1,9 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_eda.py --traindata=<traindata> --output=<output> ...
+"""This script read the preprocessed data files and performs exploratory data analysis. Saves the resulting figures into .png files and tables as .csv files in the output folder.
+
+Usage: data_eda.py --traindata=<traindata> --output=<output> ...
 
 Arguments:
   --traindata=<traindata>        path of the raw training data

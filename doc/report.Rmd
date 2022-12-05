@@ -34,26 +34,31 @@ In this project, we aim to learn and predict a credit card holder's credibility 
 
 Our final classifier using the Logistic Regression model did not perform as well as we hoped on our unseen test data, with a final f1 score of `r round(as.numeric(model_score[10,2]), 2)`.
 Of the `r sum(as.numeric(model_score[6:9,2]))` clients in our test data, our model correctly predicted the default status of `r sum(as.numeric(model_score[6,2]), as.numeric(model_score[9,2]))` clients correctly.
-There were `r sum(as.numeric(model_score[7,2]), as.numeric(model_score[8,2]))` incorrect predictions, either a customer will default on their payment when they have not or a customer will not default when they have.
+There were `r sum(as.numeric(model_score[7,2]), as.numeric(model_score[8,2]))` incorrect predictions, either a client will default on their payment when they have not or a client will not default when they have.
 Incorrect predictions of either type can be costly for financial institutions and thus we will continue to study our data and improve our model before it is put into production.
 
 ## Introduction
 
-Through this project, we aim to answer the question: Which attributes are most important when we use machine learning models to predict the default?
-Specifically we would like to know if the weight of attributes would change when we employ different models.
-Answering this question is, from our perspective, of great importance because it allows to understand what attributes relate to credibility the most.
-We would also aim to perform a comparative study of the mainstream machine learning classification models to be able to identify how the best performing model assigns weights to the various model features.
+Through this project, we aim to answer the predictive question:
+
+***Given a credit card holder\'s basic personal information (gender, education, age, history of past payment etc.), will the person default on next month\'s payment?***
+
+A credit default is defined as the behavior when someone who borrowed the money stops making the required payments.
+In the data set, the target class 1 indicates that the person has committed a credit default (fails to pay) while 0 indicates the person is paying the debt as required.
+Our evaluation is of great importance because it helps to understand which sets of attributes relate to credibility.
+We would also aim to perform a comparative study of the mainstream machine learning classification models to be able to identify the best performing model in predicting credit default.
 
 ## Methods
 
 ### Dataset
 
-We use a dataset hosted by the UCI machine learning repository.
-Originally it is collected by researchers from Chung Hua University and Tamkang University.
+We use a dataset hosted by the UCI machine learning repository (@Dua:2019).
+Originally it is collected by researchers from Chung Hua University and Tamkang University (@YEH20092473, @uci_ml_data_set).
 As the probability of default cannot be actually acquired, the targets are obtained through estimation as stated by the authors of this dataset.
 The dataset consists of `r sum(as.integer(model_score[1:2,2]), as.integer(model_score[6:9,2]))` instances, where each observation consists of 23 attributes and a target.
 The raw dataset is about 5.5 MB large, and we split it into the training set (80%) and testing set (20%) for further use.
 The data attributes range from client's gender, age, education, previous payment history, credit amount etc.
+You can access this data set by clicking [here](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
 #### Feature Descriptions
 
@@ -86,7 +91,7 @@ Scale for `PAY_X` :
 
 ##### Numeric features
 
-`LIMIT_BAL` : the amount of given credit (NT dollar), includes both the individual consumer credit and his/her family (supplementary) credit.
+`LIMIT_BAL` : the amount of given credit (in New Taiwan dollar), includes both the individual consumer credit and his/her family (supplementary) credit.
 
 `Age` : the age of the individual (years).
 
@@ -118,38 +123,42 @@ Our data has been split into training and testing splits, with 80% of the data (
 
 There are no missing values in any rows or columns.
 
-Upon our first look at the data, we found some features containing ambiguous categories.
-We cleaned up the data so the categories were more meaningful.
+Upon our first look at the data, we found some features containing ambiguous categories, such as unlabeled feature categories.
+We cleaned up the data to keep categories that were more meaningful.
 
-We have 24 usable features in total, with one binary feature, eight categorical features, and 14 numerical features.
-Our target column is `default_payment_next_month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill in the next month.
+After data cleaning, we identified 24 meaningful features, with one binary feature, eight categorical features, and fourteen numerical features.
+Our target is `default_payment_next_month` that has two classes: class 0 representing the client paying their bill in the next month and class 1 representing a client choosing to default on their bill next month.
 
-There is class imbalance in our data, with `r round(as.numeric(model_score[1,2]) / sum(as.numeric(model_score[1:2,2])), 3) * 100`% of examples as class 0 and `r round(as.numeric(model_score[2,2]) / sum(as.numeric(model_score[1:2,2])), 3) * 100`% as class 1.
+There is a class imbalance in our data, with `r round(as.numeric(model_score[1,2]) / sum(as.numeric(model_score[1:2,2])), 3) * 100`% of examples as target class 0 and `r round(as.numeric(model_score[2,2]) / sum(as.numeric(model_score[1:2,2])), 3) * 100`% as target class 1.
 
 We have categorical features such as marriage, education, and monthly payment history.
 Below is the distribution of our target class according to the various categories.
+From these visualizations, we can see that the proportion of default (class 1) is similar in most categories, except in the all PAY features, high proportion of default occurred in labels 2 or above (meaning the person missed at least two months of payment at the time of data collection).
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 1.** Distribution of Categorical Features"}
 knitr::include_graphics("../results/eda_results/categorical_result.png")
 ```
 
 There is one binary feature in our data set: sex of the client.
-There is a higher proportion of female clients who have defaulted in our dataset.
+There is a higher number of female clients who have chosen to default on their payment.
 
 ```{r out.width="75%", fig.align='center', fig.cap="**Figure 2.** Distribution of Binary Feature"}
 knitr::include_graphics("../results/eda_results/binary_result.png")
 ```
 
 Numeric features include bill amounts, payment amounts, and age of the client.
-We get an idea that the default ratio is not dependent on the months, however, we will verify this using our prediction model.
-We also see that there is a slight increase in the default ratio in the middle to late age range of our clients.
+From the visualizations, we get an idea that the default is not dependent on the months.
+However, we will verify this using our prediction model.
+We also see that there is a slight increase in the default ratio in the middle to late age group of clients.
 
 ```{r out.width="95%", fig.align='center', fig.cap="**Figure 3.** Distribution of Numeric Feature"}
 knitr::include_graphics("../results/eda_results/numeric_result.png")
 ```
 
 Below is the correlation matrix for all of our features.
-We see a strong correlation between our target and payment history as well as the credit limit offered to the client.
+We see a positive correlation between the history of missing payment (all PAY categorical features) and defaulting, and a negative correlation between the credit limit offered to the client and defaulting.
+Furthermore, we see negative correlations between past payment amount (PAY_AMT features) and defaulting.
+These correlations somewhat make sense.
 
 ```{r fig.align='center'}
 read.csv("../results/eda_results/corr.csv") %>%
@@ -162,11 +171,15 @@ read.csv("../results/eda_results/corr.csv") %>%
 
 ## Predictive Model
 
-We are interested in finding clients who are likely to default on their next payment but falsely predicting a client will default can be costly in terms of customer loyalty.
+We are interested in finding clients who are likely to default on their next payment.
+We identified that we need to reduce both false positive (misidentifying a client will default) and false negatives (misidentifying a client will not default) in our prediction as these are important for client loyalty and for the bank to not lose money.
 
-Therefore, we chose to build our model using the f1 score as our metric.
+Therefore, we chose to evaluate our model using the f1 score as our metric.
+The f1 score is calculated by:
 
-The following models were tested with default hyperparameters and compared:
+$$\text{f1 score} = \frac{2\times precision \times recall}{precision + recall}$$
+
+The following models were included in initial model screening with default hyperparameters:
 
 -   Decision Tree Classifier
 -   K Neighbours Classifier
@@ -175,50 +188,71 @@ The following models were tested with default hyperparameters and compared:
 -   Ridge Classifier Model
 -   Random Forest Classifier
 
-From the cross validation scores for each of these models, the mean validation score returned highest for the Random Forest Classifier.
-However, we chose to use the Logistic Regression Classifier instead so we are able to get a sense of whether a feature has a positive or negative impact on our prediction.
+The cross-validation scores are shown below:
 
-We then performed hyperparameter optimization for the Logistic Regression model to find our optimum hyperparamater `C` value as `r round(as.numeric(model_score[3,2]), 3)` and `r model_score[4,2]`.
-Using our model with optimized hyperparameters, the f1 validation score returned was `r round(as.numeric(model_score[5,2]), 2)`.
+```{r fig.align='center'}
+header <- scan("../results/model/model_selection.csv", nlines = 1, what = character(), sep = ",", quiet = TRUE)
+feat_table = read.csv("../results/model/model_selection.csv", skip=2, header=FALSE) %>%
+  mutate_if(is.numeric, round, 2)
+names(feat_table) <- header
+
+kable(feat_table, caption = "Table 2. Cross-Validation Scores during Initial Model Screening") %>%
+  kable_classic_2(full_width = F) 
+
+```
+
+The mean cross-validation score is the highest for the Random Forest Classifier but it is over-fit with train accuracy of 1.00.
+The SVM RBF and KNN models are analogy-based methods that don't support our evaluation of the feature importance.
+Ridge and Decision Tree Classifier are both good models but we chose **Logistic Regression Classifier** in the end as it can easily export feature importance and have a decent f1 score compared to the other models.
+
+We continued performed hyperparameter optimization for the Logistic Regression model to find our optimal hyperparamaters:
+
+`C` value as `r round(as.numeric(model_score[3,2]), 3)` and `class_weight` as `r model_score[4,2]`.
+
+Using our model with these optimized hyperparameters, the mean f1 score in cross-validation was `r round(as.numeric(model_score[5,2]), 2)`.
 
 ## Results
 
-We used our optimized Logistic Regression model on the test data of `r sum(as.integer(model_score[6:9,2]))` clients.
-The f1 score on the test data was `r round(as.numeric(model_score[10,2]), 2)`.
-Below are the regression coefficients for our features.
+We used our optimized Logistic Regression model to predict the test data of `r sum(as.integer(model_score[6:9,2]))` clients.
+The f1 score on the test data was `r round(as.numeric(model_score[10,2]), 2)`, which is comparable to the f1 score of the cross-validation data.
+
+We continued to export the regression coefficients for our features:
 
 ```{r fig.align='center'}
 feat_table = read.csv("../results/model/feature_coefficient.csv") %>%
-  select(c(Feature,Coefficient)) 
+  select(c(Feature,Coefficient)) %>%
+  mutate_if(is.numeric, round, 3)
 
-kable(feat_table, caption = "Table 2. Feature Coefficients") %>%
+kable(feat_table, caption = "Table 3. Feature Coefficients") %>%
   kable_classic_2(full_width = F) 
 ```
 
-Our strongest positively correlated feature was `PAY_0`: the default history of the client.
+Our most positive coefficient was `PAY_0`: the default history of the client.
 This is expected because the longer a client has delayed their payments as of September 2005, when the data was collected, the more likely they are to default.
 
-`BILL_AMT3` and `BILL_AMT2` were also strong positive coefficients.
+`BILL_AMT3` and `BILL_AMT2` also have positive coefficients.
 The higher the statement amount in the previous months (July and August), the more likely the client will default.
 
-The strongest negative coefficient was `BILL_AMT1` which is expected as the higher the amount due in the September statement, the higher the likely a client will default that same month.
+The most negative coefficient was `BILL_AMT1` which is expected as the higher the amount due in the September statement, the higher the likely a client will default that same month.
 
-Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated variables for our model.
+Also, `PAY_AMT1` and `PAY_AMT2` have negative coefficient in our model.
 This also makes sense as higher payments in recent months (August and September) will result in less likelihood of a client defaulting.
 
-Our model made `r sum(as.numeric(model_score[6,2]), as.numeric(model_score[9,2]))` correct predictions for our clients, out of `r sum(as.integer(model_score[6:9,2]))` (`r round((sum(as.numeric(model_score[6,2]), as.numeric(model_score[9,2]))) / (sum(as.numeric(model_score[6:9,2]))), 3) * 100`%).
+When evaluating with the default status of the test data, our model made `r sum(as.numeric(model_score[6,2]), as.numeric(model_score[9,2]))` correct predictions for our clients, out of `r sum(as.integer(model_score[6:9,2]))` (`r round((sum(as.numeric(model_score[6,2]), as.numeric(model_score[9,2]))) / (sum(as.numeric(model_score[6:9,2]))), 3) * 100`%).
 
 ```{r out.width="50%", fig.align='center', fig.cap="**Figure 4.** Confusion Matrix"}
 knitr::include_graphics("../results/model/confusion_matrix.png")
 ```
 
-We predicted `r model_score[8,2]` clients would not default and make their payment when in fact, they would not.
+We falsely predicted `r model_score[8,2]` clients would not default and make their payment when in fact, they would not (false negative).
 These false predictions would be costly for the institution in terms of opportunity cost as they could be charging a higher interest rate on these clients.
-On the other hand, we made `r model_score[7,2]` false predictions on clients and predicted they would default, when they will not.
+
+On the other hand, we made `r model_score[7,2]` false predictions on clients and predicted they would default, when they will not (false positive).
 This is costly because a false labeling and a possible unjustified interest rate increase can lead to client dissatisfaction.
 
 Our model did not perform as well as we hoped with an f1 test score of `r round(as.numeric(model_score[10,2]), 2)`.
-The data we started with contained a lot of noise and non-linear relations that our model was not able to fit well to and further improvements will need to be made before it is put into production.
+The data contained a lot of noise, missing labels, and potentially non-linear relations that our model was not able to fit well.
+Further improvements are needed before this model can be put into production.
 
 ## Further Improvements
 
@@ -228,6 +262,7 @@ We may be able to get rid of some features that are noisy and have low correlati
 As well, as mentioned earlier, there were features that contained ambiguous categories and our model is not capturing the data that was sorted into "other" categories.
 
 Proper data labelling needs to be done to account for this ambiguous data.
+If possible, we can consult the company that made the data collection for the missing labels.
 Lastly, more useful features would improve this model, such as income, size of the household, and amount of debt.
 With more relevant features for our model to fit to, the data and our prediction accuracy will improve.
 

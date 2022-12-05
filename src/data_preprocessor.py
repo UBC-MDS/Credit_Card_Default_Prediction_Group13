@@ -1,7 +1,9 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_preprocessor.py --input=<input> --output=<output> ...
+"""This script read the raw data from the input file and splits it on a 80-20 train test split ratio. Some feature cleaning are performed to remove ambiguity. Eventually it saves the cleaned data in .csv files in the output folder.
+
+Usage: data_preprocessor.py --input=<input> --output=<output> ...
 
 Arguments:
   --input=<input>        path to raw data file

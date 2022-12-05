@@ -4,7 +4,7 @@
 
 # This driver script completes the supervised machine learning data analysis on
 # a credit card default prediction data set and creates a final report on whether
-# a credit card holder will likely pay their bill next month. This script
+# a credit card holder will likely default their bill next month. This script
 # takes no arguments.
 
 # example usage:
@@ -44,14 +44,8 @@ doc/report.md doc/report.html: doc/report.Rmd doc/references.bib results/eda_res
 
 # Clean data and report files.
 clean :
-	rm -f results/eda_results/*.png	# remove all eda figures
-	rm -f results/eda_results/*.csv	# remove eda table
-	rm -f data/processed/*.csv	# remove preprocessed data
-	rm -f data/raw/*.xls		# remove raw data
-	rm -f results/model/*.png	# remove analysis figures
-	rm -f results/model/*.csv	# remove analysis tables
 	rm -f doc/report.md		# remove report markdown file
 	rm -f doc/report.html		# remove report html file
-	rm -rf data # remove the data folder
-	rm -rf results # remove the results folder
+	rm -rf data # remove the entire data folder
+	rm -rf results # remove the entire results folder
   

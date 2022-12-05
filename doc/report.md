@@ -29,38 +29,46 @@ Our final classifier using the Logistic Regression model did not perform
 as well as we hoped on our unseen test data, with a final f1 score of
 0.47. Of the 6000 clients in our test data, our model correctly
 predicted the default status of 4141 clients correctly. There were 1859
-incorrect predictions, either a customer will default on their payment
-when they have not or a customer will not default when they have.
+incorrect predictions, either a client will default on their payment
+when they have not or a client will not default when they have.
 Incorrect predictions of either type can be costly for financial
 institutions and thus we will continue to study our data and improve our
 model before it is put into production.
 
 ## Introduction
 
-Through this project, we aim to answer the question: Which attributes
-are most important when we use machine learning models to predict the
-default? Specifically we would like to know if the weight of attributes
-would change when we employ different models. Answering this question
-is, from our perspective, of great importance because it allows to
-understand what attributes relate to credibility the most. We would also
+Through this project, we aim to answer the predictive question:
+
+***Given a credit card holder's basic personal information (gender,
+education, age, history of past payment etc.), will the person default
+on next month's payment?***
+
+A credit default is defined as the behavior when someone who borrowed
+the money stops making the required payments. In the data set, the
+target class 1 indicates that the person has committed a credit default
+(fails to pay) while 0 indicates the person is paying the debt as
+required. Our evaluation is of great importance because it helps to
+understand which sets of attributes relate to credibility. We would also
 aim to perform a comparative study of the mainstream machine learning
-classification models to be able to identify how the best performing
-model assigns weights to the various model features.
+classification models to be able to identify the best performing model
+in predicting credit default.
 
 ## Methods
 
 ### Dataset
 
-We use a dataset hosted by the UCI machine learning repository.
-Originally it is collected by researchers from Chung Hua University and
-Tamkang University. As the probability of default cannot be actually
-acquired, the targets are obtained through estimation as stated by the
-authors of this dataset. The dataset consists of 30000 instances, where
-each observation consists of 23 attributes and a target. The raw dataset
-is about 5.5 MB large, and we split it into the training set (80%) and
-testing set (20%) for further use. The data attributes range from
-client’s gender, age, education, previous payment history, credit amount
-etc.
+We use a dataset hosted by the UCI machine learning repository (Dua and
+Graff (2017)). Originally it is collected by researchers from Chung Hua
+University and Tamkang University (Yeh and Lien (2009), (n.d.)). As the
+probability of default cannot be actually acquired, the targets are
+obtained through estimation as stated by the authors of this dataset.
+The dataset consists of 30000 instances, where each observation consists
+of 23 attributes and a target. The raw dataset is about 5.5 MB large,
+and we split it into the training set (80%) and testing set (20%) for
+further use. The data attributes range from client’s gender, age,
+education, previous payment history, credit amount etc. You can access
+this data set by clicking
+[here](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
 #### Feature Descriptions
 
@@ -95,8 +103,9 @@ Scale for `PAY_X` :
 
 ##### Numeric features
 
-`LIMIT_BAL` : the amount of given credit (NT dollar), includes both the
-individual consumer credit and his/her family (supplementary) credit.
+`LIMIT_BAL` : the amount of given credit (in New Taiwan dollar),
+includes both the individual consumer credit and his/her family
+(supplementary) credit.
 
 `Age` : the age of the individual (years).
 
@@ -131,61 +140,49 @@ the data (24000) in the training set and 20% (6000) in the test data.
 There are no missing values in any rows or columns.
 
 Upon our first look at the data, we found some features containing
-ambiguous categories. We cleaned up the data so the categories were more
-meaningful.
+ambiguous categories, such as unlabeled feature categories. We cleaned
+up the data to keep categories that were more meaningful.
 
-We have 24 usable features in total, with one binary feature, eight
-categorical features, and 14 numerical features. Our target column is
-`default_payment_next_month` that has two classes: class 0 representing
-the client paying their bill in the next month and class 1 representing
-a client choosing to default on their bill in the next month.
+After data cleaning, we identified 24 meaningful features, with one
+binary feature, eight categorical features, and fourteen numerical
+features. Our target is `default_payment_next_month` that has two
+classes: class 0 representing the client paying their bill in the next
+month and class 1 representing a client choosing to default on their
+bill next month.
 
-There is class imbalance in our data, with 77.8% of examples as class 0
-and 22.2% as class 1.
+There is a class imbalance in our data, with 77.8% of examples as target
+class 0 and 22.2% as target class 1.
 
 We have categorical features such as marriage, education, and monthly
 payment history. Below is the distribution of our target class according
-to the various categories.
+to the various categories. From these visualizations, we can see that
+the proportion of default (class 1) is similar in most categories,
+except in the all PAY features, high proportion of default occurred in
+labels 2 or above (meaning the person missed at least two months of
+payment at the time of data collection).
 
-<div class="figure" style="text-align: center">
-
-<img src="../results/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features" width="95%" />
-<p class="caption">
-**Figure 1.** Distribution of Categorical Features
-</p>
-
-</div>
+<img src="../results/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features" width="95%" style="display: block; margin: auto;" />
 
 There is one binary feature in our data set: sex of the client. There is
-a higher proportion of female clients who have defaulted in our dataset.
+a higher number of female clients who have chosen to default on their
+payment.
 
-<div class="figure" style="text-align: center">
-
-<img src="../results/eda_results/binary_result.png" alt="**Figure 2.** Distribution of Binary Feature" width="75%" />
-<p class="caption">
-**Figure 2.** Distribution of Binary Feature
-</p>
-
-</div>
+<img src="../results/eda_results/binary_result.png" alt="**Figure 2.** Distribution of Binary Feature" width="75%" style="display: block; margin: auto;" />
 
 Numeric features include bill amounts, payment amounts, and age of the
-client. We get an idea that the default ratio is not dependent on the
-months, however, we will verify this using our prediction model. We also
-see that there is a slight increase in the default ratio in the middle
-to late age range of our clients.
+client. From the visualizations, we get an idea that the default is not
+dependent on the months. However, we will verify this using our
+prediction model. We also see that there is a slight increase in the
+default ratio in the middle to late age group of clients.
 
-<div class="figure" style="text-align: center">
+<img src="../results/eda_results/numeric_result.png" alt="**Figure 3.** Distribution of Numeric Feature" width="95%" style="display: block; margin: auto;" />
 
-<img src="../results/eda_results/numeric_result.png" alt="**Figure 3.** Distribution of Numeric Feature" width="95%" />
-<p class="caption">
-**Figure 3.** Distribution of Numeric Feature
-</p>
-
-</div>
-
-Below is the correlation matrix for all of our features. We see a strong
-correlation between our target and payment history as well as the credit
-limit offered to the client.
+Below is the correlation matrix for all of our features. We see a
+positive correlation between the history of missing payment (all PAY
+categorical features) and defaulting, and a negative correlation between
+the credit limit offered to the client and defaulting. Furthermore, we
+see negative correlations between past payment amount (PAY_AMT features)
+and defaulting. These correlations somewhat make sense.
 
 <div
 style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
@@ -2285,13 +2282,18 @@ default payment next month
 ## Predictive Model
 
 We are interested in finding clients who are likely to default on their
-next payment but falsely predicting a client will default can be costly
-in terms of customer loyalty.
+next payment. We identified that we need to reduce both false positive
+(misidentifying a client will default) and false negatives
+(misidentifying a client will not default) in our prediction as these
+are important for client loyalty and for the bank to not lose money.
 
-Therefore, we chose to build our model using the f1 score as our metric.
+Therefore, we chose to evaluate our model using the f1 score as our
+metric. The f1 score is calculated by:
 
-The following models were tested with default hyperparameters and
-compared:
+$$\text{f1 score} = \frac{2\times precision \times recall}{precision + recall}$$
+
+The following models were included in initial model screening with
+default hyperparameters:
 
 - Decision Tree Classifier
 - K Neighbours Classifier
@@ -2300,26 +2302,297 @@ compared:
 - Ridge Classifier Model
 - Random Forest Classifier
 
-From the cross validation scores for each of these models, the mean
-validation score returned highest for the Random Forest Classifier.
-However, we chose to use the Logistic Regression Classifier instead so
-we are able to get a sense of whether a feature has a positive or
-negative impact on our prediction.
-
-We then performed hyperparameter optimization for the Logistic
-Regression model to find our optimum hyperparamater `C` value as 0.438
-and balanced. Using our model with optimized hyperparameters, the f1
-validation score returned was 0.48.
-
-## Results
-
-We used our optimized Logistic Regression model on the test data of 6000
-clients. The f1 score on the test data was 0.47. Below are the
-regression coefficients for our features.
+The cross-validation scores are shown below:
 
 <table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Table 2. Feature Coefficients
+Table 2. Cross-Validation Scores during Initial Model Screening
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Decision Tree
+</th>
+<th style="text-align:right;">
+KNN
+</th>
+<th style="text-align:right;">
+RBF SVM
+</th>
+<th style="text-align:right;">
+Logistic Regression
+</th>
+<th style="text-align:right;">
+Ridge_cla
+</th>
+<th style="text-align:right;">
+RandomForest_cla
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+fit_time
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+4.78
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+3.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+score_time
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+test_accuracy
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+train_accuracy
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+test_precision
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+train_precision
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+test_recall
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+train_recall
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+test_f1
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+train_f1
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+</tbody>
+</table>
+
+The mean cross-validation score is the highest for the Random Forest
+Classifier but it is over-fit with train accuracy of 1.00. The SVM RBF
+and KNN models are analogy-based methods that don’t support our
+evaluation of the feature importance. Ridge and Decision Tree Classifier
+are both good models but we chose **Logistic Regression Classifier** in
+the end as it can easily export feature importance and have a decent f1
+score compared to the other models.
+
+We continued performed hyperparameter optimization for the Logistic
+Regression model to find our optimal hyperparamaters:
+
+`C` value as 0.438 and `class_weight` as balanced.
+
+Using our model with these optimized hyperparameters, the mean f1 score
+in cross-validation was 0.48.
+
+## Results
+
+We used our optimized Logistic Regression model to predict the test data
+of 6000 clients. The f1 score on the test data was 0.47, which is
+comparable to the f1 score of the cross-validation data.
+
+We continued to export the regression coefficients for our features:
+
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Table 3. Feature Coefficients
 </caption>
 <thead>
 <tr>
@@ -2337,7 +2610,7 @@ Coefficient
 PAY_0
 </td>
 <td style="text-align:right;">
-0.5280450
+0.528
 </td>
 </tr>
 <tr>
@@ -2345,7 +2618,7 @@ PAY_0
 BILL_AMT3
 </td>
 <td style="text-align:right;">
-0.1448476
+0.145
 </td>
 </tr>
 <tr>
@@ -2353,7 +2626,7 @@ BILL_AMT3
 BILL_AMT2
 </td>
 <td style="text-align:right;">
-0.1113211
+0.111
 </td>
 </tr>
 <tr>
@@ -2361,7 +2634,7 @@ BILL_AMT2
 EDUCATION
 </td>
 <td style="text-align:right;">
-0.0740647
+0.074
 </td>
 </tr>
 <tr>
@@ -2369,7 +2642,7 @@ EDUCATION
 AGE
 </td>
 <td style="text-align:right;">
-0.0734035
+0.073
 </td>
 </tr>
 <tr>
@@ -2377,7 +2650,7 @@ AGE
 PAY_3
 </td>
 <td style="text-align:right;">
-0.0687031
+0.069
 </td>
 </tr>
 <tr>
@@ -2385,7 +2658,7 @@ PAY_3
 PAY_2
 </td>
 <td style="text-align:right;">
-0.0653872
+0.065
 </td>
 </tr>
 <tr>
@@ -2393,7 +2666,7 @@ PAY_2
 BILL_AMT4
 </td>
 <td style="text-align:right;">
-0.0491495
+0.049
 </td>
 </tr>
 <tr>
@@ -2401,7 +2674,7 @@ BILL_AMT4
 MARRIAGE_1
 </td>
 <td style="text-align:right;">
-0.0482283
+0.048
 </td>
 </tr>
 <tr>
@@ -2409,7 +2682,7 @@ MARRIAGE_1
 PAY_5
 </td>
 <td style="text-align:right;">
-0.0342673
+0.034
 </td>
 </tr>
 <tr>
@@ -2417,7 +2690,7 @@ PAY_5
 PAY_4
 </td>
 <td style="text-align:right;">
-0.0160220
+0.016
 </td>
 </tr>
 <tr>
@@ -2425,7 +2698,7 @@ PAY_4
 BILL_AMT6
 </td>
 <td style="text-align:right;">
-0.0017331
+0.002
 </td>
 </tr>
 <tr>
@@ -2433,7 +2706,7 @@ BILL_AMT6
 PAY_6
 </td>
 <td style="text-align:right;">
--0.0151600
+-0.015
 </td>
 </tr>
 <tr>
@@ -2441,7 +2714,7 @@ PAY_6
 BILL_AMT5
 </td>
 <td style="text-align:right;">
--0.0273464
+-0.027
 </td>
 </tr>
 <tr>
@@ -2449,7 +2722,7 @@ BILL_AMT5
 PAY_AMT6
 </td>
 <td style="text-align:right;">
--0.0294433
+-0.029
 </td>
 </tr>
 <tr>
@@ -2457,7 +2730,7 @@ PAY_AMT6
 PAY_AMT4
 </td>
 <td style="text-align:right;">
--0.0378034
+-0.038
 </td>
 </tr>
 <tr>
@@ -2465,7 +2738,7 @@ PAY_AMT4
 PAY_AMT5
 </td>
 <td style="text-align:right;">
--0.0378806
+-0.038
 </td>
 </tr>
 <tr>
@@ -2473,7 +2746,7 @@ PAY_AMT5
 MARRIAGE_2
 </td>
 <td style="text-align:right;">
--0.0972138
+-0.097
 </td>
 </tr>
 <tr>
@@ -2481,7 +2754,7 @@ MARRIAGE_2
 PAY_AMT3
 </td>
 <td style="text-align:right;">
--0.0973026
+-0.097
 </td>
 </tr>
 <tr>
@@ -2489,7 +2762,7 @@ PAY_AMT3
 SEX_2
 </td>
 <td style="text-align:right;">
--0.1029560
+-0.103
 </td>
 </tr>
 <tr>
@@ -2497,7 +2770,7 @@ SEX_2
 LIMIT_BAL
 </td>
 <td style="text-align:right;">
--0.1082766
+-0.108
 </td>
 </tr>
 <tr>
@@ -2505,7 +2778,7 @@ LIMIT_BAL
 MARRIAGE_3
 </td>
 <td style="text-align:right;">
--0.1646616
+-0.165
 </td>
 </tr>
 <tr>
@@ -2513,7 +2786,7 @@ MARRIAGE_3
 PAY_AMT1
 </td>
 <td style="text-align:right;">
--0.1881361
+-0.188
 </td>
 </tr>
 <tr>
@@ -2521,7 +2794,7 @@ PAY_AMT1
 PAY_AMT2
 </td>
 <td style="text-align:right;">
--0.2046310
+-0.205
 </td>
 </tr>
 <tr>
@@ -2529,54 +2802,48 @@ PAY_AMT2
 BILL_AMT1
 </td>
 <td style="text-align:right;">
--0.3634575
+-0.363
 </td>
 </tr>
 </tbody>
 </table>
 
-Our strongest positively correlated feature was `PAY_0`: the default
-history of the client. This is expected because the longer a client has
-delayed their payments as of September 2005, when the data was
-collected, the more likely they are to default.
+Our most positive coefficient was `PAY_0`: the default history of the
+client. This is expected because the longer a client has delayed their
+payments as of September 2005, when the data was collected, the more
+likely they are to default.
 
-`BILL_AMT3` and `BILL_AMT2` were also strong positive coefficients. The
-higher the statement amount in the previous months (July and August),
-the more likely the client will default.
+`BILL_AMT3` and `BILL_AMT2` also have positive coefficients. The higher
+the statement amount in the previous months (July and August), the more
+likely the client will default.
 
-The strongest negative coefficient was `BILL_AMT1` which is expected as
-the higher the amount due in the September statement, the higher the
-likely a client will default that same month.
+The most negative coefficient was `BILL_AMT1` which is expected as the
+higher the amount due in the September statement, the higher the likely
+a client will default that same month.
 
-Also, `PAY_AMT1` and `PAY_AMT2` are strong negatively correlated
-variables for our model. This also makes sense as higher payments in
-recent months (August and September) will result in less likelihood of a
-client defaulting.
+Also, `PAY_AMT1` and `PAY_AMT2` have negative coefficient in our model.
+This also makes sense as higher payments in recent months (August and
+September) will result in less likelihood of a client defaulting.
 
-Our model made 4141 correct predictions for our clients, out of 6000
-(69%).
+When evaluating with the default status of the test data, our model made
+4141 correct predictions for our clients, out of 6000 (69%).
 
-<div class="figure" style="text-align: center">
+<img src="../results/model/confusion_matrix.png" alt="**Figure 4.** Confusion Matrix" width="50%" style="display: block; margin: auto;" />
 
-<img src="../results/model/confusion_matrix.png" alt="**Figure 4.** Confusion Matrix" width="50%" />
-<p class="caption">
-**Figure 4.** Confusion Matrix
-</p>
+We falsely predicted 494 clients would not default and make their
+payment when in fact, they would not (false negative). These false
+predictions would be costly for the institution in terms of opportunity
+cost as they could be charging a higher interest rate on these clients.
 
-</div>
-
-We predicted 494 clients would not default and make their payment when
-in fact, they would not. These false predictions would be costly for the
-institution in terms of opportunity cost as they could be charging a
-higher interest rate on these clients. On the other hand, we made 1365
-false predictions on clients and predicted they would default, when they
-will not. This is costly because a false labeling and a possible
-unjustified interest rate increase can lead to client dissatisfaction.
+On the other hand, we made 1365 false predictions on clients and
+predicted they would default, when they will not (false positive). This
+is costly because a false labeling and a possible unjustified interest
+rate increase can lead to client dissatisfaction.
 
 Our model did not perform as well as we hoped with an f1 test score of
-0.47. The data we started with contained a lot of noise and non-linear
-relations that our model was not able to fit well to and further
-improvements will need to be made before it is put into production.
+0.47. The data contained a lot of noise, missing labels, and potentially
+non-linear relations that our model was not able to fit well. Further
+improvements are needed before this model can be put into production.
 
 ## Further Improvements
 
@@ -2589,10 +2856,11 @@ categories and our model is not capturing the data that was sorted into
 “other” categories.
 
 Proper data labelling needs to be done to account for this ambiguous
-data. Lastly, more useful features would improve this model, such as
-income, size of the household, and amount of debt. With more relevant
-features for our model to fit to, the data and our prediction accuracy
-will improve.
+data. If possible, we can consult the company that made the data
+collection for the missing labels. Lastly, more useful features would
+improve this model, such as income, size of the household, and amount of
+debt. With more relevant features for our model to fit to, the data and
+our prediction accuracy will improve.
 
 ## References
 
@@ -2633,6 +2901,14 @@ Springer.
 <div id="ref-numpy" class="csl-entry">
 
 Bressert, Eli. 2012. “SciPy and NumPy: An Overview for Developers.”
+
+</div>
+
+<div id="ref-Dua:2019" class="csl-entry">
+
+Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.”
+University of California, Irvine, School of Information; Computer
+Sciences. <http://archive.ics.uci.edu/ml>.
 
 </div>
 
@@ -2695,6 +2971,15 @@ Rectangular Text Data*. <https://CRAN.R-project.org/package=readr>.
 
 Xie, Yihui. 2022. *Knitr: A General-Purpose Package for Dynamic Report
 Generation in r*. <https://yihui.org/knitr/>.
+
+</div>
+
+<div id="ref-YEH20092473" class="csl-entry">
+
+Yeh, I-Cheng, and Che-hui Lien. 2009. “The Comparisons of Data Mining
+Techniques for the Predictive Accuracy of Probability of Default of
+Credit Card Clients.” *Expert Systems with Applications* 36 (2, Part 1):
+2473–80. https://doi.org/<https://doi.org/10.1016/j.eswa.2007.12.020>.
 
 </div>
 

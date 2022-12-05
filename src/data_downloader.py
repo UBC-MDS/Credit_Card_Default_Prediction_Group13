@@ -1,12 +1,13 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: src/data_downloader.py --url=<url> --path=<path> ...
+"""Downloads the data from the host url and saves it in the output folder
+
+Usage: src/data_downloader.py --url=<url> --path=<path> ...
 
 Arguments:
   --url=<url>        optional input file
   --path=<path>        local file path
-
 
 """
 from docopt import docopt

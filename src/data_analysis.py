@@ -1,7 +1,9 @@
 # authors: Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
 # date: 2022-11-24
 
-"""Usage: data_analysis.py --traindata=<traindata> --testdata=<testdata> --output=<output> ...
+"""This script reads the preprocessed train and test data files and perform comparative analysis on them for different ML models. It further selects Logostic Regression Classifier as the best model and performs hyperparameter optimizaiton. The final results are saves as .csv and .png files in the output folder. 
+
+Usage: data_analysis.py --traindata=<traindata> --testdata=<testdata> --output=<output> ...
 
 Arguments:
   --traindata=<traindata>        path of the training data
@@ -212,19 +214,11 @@ def perform_ml_analysis(train_data, test_data, out_path):
     cross_val_results_df = (
         pd.concat(
             {
-                key: pd.DataFrame(value[0]).agg(["mean", "std"])
+                key: pd.DataFrame(value[0]).agg(["mean"])
                 for key, value in cross_val_results.items()
             },
             axis=0,
         ).T
-        # .style.format(
-        #     precision=2  # Pandas `.style` does not honor previous rounding via `.round()`
-        # )
-        # .background_gradient(
-        #     axis=None,
-        #     vmax=1,
-        #     vmin=0,  # Color cells based on the entire matrix rather than row/column-wise
-        # )
     )
 
     # Show cross validation results for different modesl

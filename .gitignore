@@ -2,3 +2,4 @@ utils/*.json
 utils/*.log
 utils/*node*
 *.DS_Store*
+.Rproj.user

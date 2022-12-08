@@ -11,6 +11,9 @@ RUN apt-get install -y build-essential
 RUN apt-get install -y python3 r-base
 RUN apt-get install make -y
 
+# These dependencies are essential for installing tidyverse and kableExtra
+RUN apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev libfontconfig1-dev
+
 # Install Conda
 ENV CONDA_DIR /opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && /bin/bash ~/miniconda.sh -b -p /opt/conda
@@ -21,6 +24,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install packages via conda
 RUN conda install --quiet -y -c defaults \
+    "docopt=0.6.2" \
     "numpy=1.23.3" \
     "ipykernel" \
     "scikit-learn=1.1.2" \

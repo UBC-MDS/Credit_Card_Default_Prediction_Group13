@@ -94,17 +94,17 @@ git clone https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13.git
 ### 2. Using Docker
 Please install Docker on your local machine. After installation, you can run the following command in the command line/terminal tool at the root of this project directory:
 ```
-docker build --tag credit_card_default_group13
+docker build --tag Credit_Card_Default_Prediction_Group13
 ```
 
 And, 
 ```
-docker run --rm --platform linux/amd64 -v /$(pwd):/home/credit_card_default_group13 ### make -C /home/credit_card_default_group13 all
+docker run --rm -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13 make -C '/home/Credit_Card_Default_Prediction_Group13' all
 ```
 
 To clean up the repo, run the following command in the command line/terminal tool at the root of this project directory:
 ```
-docker run --rm --platform linux/amd64 -v /$(pwd):/home/credit_card_default_group13 ciciecho/credit_card_default_group13 make -C /home/credit_card_default_group13 clean
+docker run --rm --platform linux/amd64 -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13 make -C '/home/Credit_Card_Default_Prediction_Group13' clean
 ```
 
 Note: For non-M1 users, please remove the flag --platform linux/amd64.

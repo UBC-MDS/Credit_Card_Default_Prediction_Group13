@@ -13,7 +13,7 @@
 
 # Run all to download & preprocess data, perform EDA, generate figures and build model. 
 # It will also generate the report on the credit default prediction analysis. 
-all: data/raw/raw_data.xls data/processed/test_cleaned.csv data/processed/test_raw.csv data/processed/train_cleaned.csv data/processed/train_raw.csv results/eda_results/binary_result.png results/eda_results/categorical_result.png results/eda_results/corr.csv results/eda_results/numeric_result.png results/model/confusion_matrix.png results/model/feature_coefficient.csv results/model/model_selection.csv results/model/precision_recall.png results/model/roc.png doc/report.md doc/report.html
+all: doc/report.md doc/report.html
 
 
 # This line of code downloads the data from the UCI repository.

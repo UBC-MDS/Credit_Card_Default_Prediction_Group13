@@ -104,6 +104,10 @@ To delete all intermediate and result files, run the following command using ter
 make clean
 ```
 
+##### Makefile Dependency Diagram
+
+![](Makefile.png) 
+
 ### Running each step
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13#dependencies).

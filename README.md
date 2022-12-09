@@ -82,13 +82,35 @@ conda deactivate
 
 ## Usage
 
-### (Required) Cloning this repository
+To reproduce our analysis, you can choose to use Docker, run the Makefile commands, or run individual scripts sequentially in your command line/terminal tool at the root of this project directory. 
+
+### 1. Cloning this repository (Required)
 
 Clone this Github repo:
 ```
 git clone https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13.git
 ```
-### With Makefile
+
+### 2. Using Docker
+Please install Docker on your local machine. After installation, you can run the following command in the command line/terminal tool at the root of this project directory:
+```
+docker build --tag Credit_Card_Default_Prediction_Group13
+```
+
+And, 
+```
+docker run --rm -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13 make -C '/home/Credit_Card_Default_Prediction_Group13' all
+```
+
+To clean up the repo, run the following command in the command line/terminal tool at the root of this project directory:
+```
+docker run --rm --platform linux/amd64 -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13 make -C '/home/Credit_Card_Default_Prediction_Group13' clean
+```
+
+Note: For non-M1 users, please remove the flag --platform linux/amd64.
+
+
+### 3. With Makefile
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13#dependencies). 
 
@@ -108,7 +130,7 @@ make clean
 
 ![](Makefile.png) 
 
-### Running each step
+### 4. Run individual scripts sequentially
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13#dependencies).
 

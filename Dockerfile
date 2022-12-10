@@ -1,6 +1,6 @@
 # Credit_Card_Default_Prediction_Group13
 # Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
-# Dec 8 2022
+# Thursday, Dec 8 2022
 
 # Download base ubuntu image
 FROM ubuntu:latest

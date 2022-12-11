@@ -1,7 +1,7 @@
 Credibility Classification of Credit Card Clients
 ================
 Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon
-11/26/2022 (updated: 2022-12-04)
+11/26/2022 (updated: 2022-12-10)
 
 - <a href="#summary" id="toc-summary">Summary</a>
 - <a href="#introduction" id="toc-introduction">Introduction</a>
@@ -39,9 +39,9 @@ model before it is put into production.
 
 Through this project, we aim to answer the predictive question:
 
-***Given a credit card holder's basic personal information (gender,
+***Given a credit card holder’s basic personal information (gender,
 education, age, history of past payment etc.), will the person default
-on next month's payment?***
+on next month’s payment?***
 
 A credit default is defined as the behavior when someone who borrowed
 the money stops making the required payments. In the data set, the
@@ -161,7 +161,7 @@ except in the all PAY features, high proportion of default occurred in
 labels 2 or above (meaning the person missed at least two months of
 payment at the time of data collection).
 
-<img src="../results/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features" width="95%" style="display: block; margin: auto;" />
+<img src="../results/eda_results/categorical_result.png" alt="**Figure 1.** Distribution of Categorical Features." width="100%" style="display: block; margin: auto;" />
 
 There is one binary feature in our data set: sex of the client. There is
 a higher number of female clients who have chosen to default on their

@@ -3,11 +3,11 @@ title: "Credibility Classification of Credit Card Clients"
 author: "Team 13 - Chester Wang, HanChen Wang, Qurat-ul-Ain Azim, Renee Kwon"
 date: '11/26/2022 (updated: `r Sys.Date()`)'
 output:
-  github_document:
-    toc: yes
-  html_document:
+  html_document: 
     toc: yes
     df_print: paged
+  github_document:
+    toc: yes
 bibliography: references.bib
 editor_options:
   markdown:
@@ -41,7 +41,7 @@ Incorrect predictions of either type can be costly for financial institutions an
 
 Through this project, we aim to answer the predictive question:
 
-***Given a credit card holder\'s basic personal information (gender, education, age, history of past payment etc.), will the person default on next month\'s payment?***
+***Given a credit card holder's basic personal information (gender, education, age, history of past payment etc.), will the person default on next month's payment?***
 
 A credit default is defined as the behavior when someone who borrowed the money stops making the required payments.
 In the data set, the target class 1 indicates that the person has committed a credit default (fails to pay) while 0 indicates the person is paying the debt as required.
@@ -135,7 +135,7 @@ We have categorical features such as marriage, education, and monthly payment hi
 Below is the distribution of our target class according to the various categories.
 From these visualizations, we can see that the proportion of default (class 1) is similar in most categories, except in the all PAY features, high proportion of default occurred in labels 2 or above (meaning the person missed at least two months of payment at the time of data collection).
 
-```{r out.width="95%", fig.align='center', fig.cap="**Figure 1.** Distribution of Categorical Features"}
+```{r fig.cap="**Figure 1.** Distribution of Categorical Features.", fig.align='center', out.width = '100%'}
 knitr::include_graphics("../results/eda_results/categorical_result.png")
 ```
 

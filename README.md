@@ -92,12 +92,8 @@ git clone https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13.git
 ```
 
 ### 2. Using Docker
-Please install Docker on your local machine. After installation, you can run the following command in the command line/terminal tool at the root of this project directory:
-```
-docker pull chesteraigo/mds_522_credit_card_group_13
-```
-
-And run this if you have a Windows:
+Please install Docker on your local machine. After installation, you can run the following command in the command line/terminal tool at the root of this project directory. *Estimated completion time: 30 minutes (MAC M2 8GB memory).* 
+On Windows:
 ```
 docker run --platform linux/amd64 --rm -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13 make -C '/home/Credit_Card_Default_Prediction_Group13' all
 ```
@@ -127,7 +123,7 @@ Note: For non-M1 users, please remove the flag --platform linux/amd64.
 
 You can reproduce the results in this GitHub repository by cloning and installing all necessary [dependencies](https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13#dependencies). 
 
-Then, you can run the command below using terminal in the root directory of this project to automatically run the full analysis and generate the final report. 
+Then, you can run the command below using terminal in the root directory of this project to automatically run the full analysis and generate the final report. *Estimated completion time: 30 minutes (MAC M2 8GB memory).* 
 
 ```
 make all 
@@ -165,7 +161,7 @@ The EDA can be performed as:
 python src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
 ```
 
-And finally, the model building, model scoring, and predictive analysis can be done by running the following code in the terminal:
+And finally, the model building, model scoring, and predictive analysis can be done by running the following code in the terminal. *Estimated completion time: 30 minutes (MAC M2 8GB memory).*
 
 ```
 python src/data_analysis.py --traindata=data/processed/train_cleaned.csv --testdata=data/processed/test_cleaned.csv --output=results/model/

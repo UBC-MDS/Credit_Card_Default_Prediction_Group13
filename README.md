@@ -95,25 +95,25 @@ git clone https://github.com/UBC-MDS/Credit_Card_Default_Prediction_Group13.git
 Please install Docker on your local machine. After installation, you can run the following command in the command line/terminal tool at the root of this project directory. *Estimated completion time: 30 minutes (MAC M2 8GB memory).* 
 On Windows:
 ```
-docker run --rm --platform linux/amd64 -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' all
+docker run --rm --platform linux/amd64 -v /$PWD:/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' all
 ```
 
 or Mac:
 ```
-docker run --rm --platform linux/amd64-v "$PWD:/home/Credit_Card_Default_Prediction_Group13" chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' all
+docker run --rm --platform linux/amd64-v "$(pwd):/home/Credit_Card_Default_Prediction_Group13" chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' all
 ```
 
 To clean up the repo, run the following command in the command line/terminal tool at the root of this project directory.
 On Windows:
 
 ```
-docker run --rm --platform linux/amd64 -v /$(pwd):/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' clean
+docker run --rm --platform linux/amd64 -v /$PWD:/home/Credit_Card_Default_Prediction_Group13 chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' clean
 ```
 
 On Mac:
 
 ```
-docker run --rm --platform linux/amd64 -v "$PWD:/home/Credit_Card_Default_Prediction_Group13" chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' clean
+docker run --rm --platform linux/amd64 -v "$(pwd):/home/Credit_Card_Default_Prediction_Group13" chesteraigo/mds_522_credit_card_group_13:latest make -C '/home/Credit_Card_Default_Prediction_Group13' clean
 ```
 
 Note: For non-M1 users, please remove the flag --platform linux/amd64.

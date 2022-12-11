@@ -9,6 +9,8 @@ Arguments:
   --url=<url>        optional input file
   --path=<path>        local file path
 
+Example:
+python src/data_downloader.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls --path=data/raw/
 """
 from docopt import docopt
 import numpy as np
@@ -27,7 +29,7 @@ def download_data(url, to='./data/', ext_name='csv'):
 
 
 # Make sure you call this script in the repo's root path
-# Example: python3 src/data_downloader.py https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls ./data/raw/
+# Example: python src/data_downloader.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00350/default%20of%20credit%20card%20clients.xls --path=data/raw/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 

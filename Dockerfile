@@ -3,18 +3,25 @@
 # Thursday, Dec 8 2022
 
 # Download base ubuntu image
-FROM continuumio/miniconda3
-RUN conda update -n base -c conda-forge -y conda
+FROM ubuntu:latest
 
 # Set the installation process to be non-interactive
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Install softwares (wget, GNU make, Python and R)
+# Last four dependencies are essential for installing tidyverse and kableExtra
 RUN apt-get update
 RUN apt-get install -y wget software-properties-common make build-essential python3 r-base libxml2-dev libcurl4-openssl-dev libssl-dev libfontconfig1-dev
 
-RUN Rscript -e "install.packages(c('tidyverse', 'knitr', 'kableExtra'))"
+# Install Conda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && /bin/bash ~/miniconda.sh -b -p /opt/conda
 
-ENV PATH="/opt/conda/bin:${PATH}"
+# Put conda in path
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+# Install R packages
+RUN Rscript -e "install.packages(c('tidyverse', 'knitr', 'kableExtra'))"
 
 # Install packages via conda
 RUN conda install --quiet -y -c defaults -c conda-forge \

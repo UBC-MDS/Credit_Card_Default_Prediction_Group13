@@ -9,7 +9,8 @@ Arguments:
   --input=<input>        path to raw data file
   --output=<output>      folder to save the preprocessed and split dataset (as train.csv and test.csv)
 
-
+Example:
+python src/data_preprocessor.py --input=data/raw/raw_data.xls --output=data/processed/
 """
 from docopt import docopt
 import numpy as np
@@ -50,7 +51,7 @@ def preprocess_data(raw_data_path, out_folder):
 
 
 # Make sure you call this script in the repo's root path
-# Example: python3 src/data_preprocessor.py ./data/raw/raw_data.xls ./data/processed/
+# Example: python src/data_preprocessor.py --input=data/raw/raw_data.xls --output=data/processed/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 

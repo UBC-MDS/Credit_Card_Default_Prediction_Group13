@@ -9,7 +9,8 @@ Arguments:
   --traindata=<traindata>        path of the raw training data
   --output=<output>              folder that stores the generated plots
 
-
+Example:
+python src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
 """
 from docopt import docopt
 import numpy as np
@@ -152,7 +153,7 @@ def perform_eda(train_data_path, out_folder):
 
 
 # Make sure you call this script in the repo's root path
-# Example: python3 src/data_eda.py ./data/processed/train_raw.csv ./eda_results/
+# Example: python src/data_eda.py --traindata=data/processed/train_raw.csv --output=results/eda_results/
 if __name__ == '__main__':
     arguments = docopt(__doc__)
 
